@@ -1,0 +1,21 @@
+## Sources
+source $HOME/.zsh/alias
+source $HOME/.zsh/functions
+source $HOME/.zsh/plugins
+source $HOME/.zsh/prompt
+
+## History
+HISTFILE=$HOME/.zhistory
+HISTSIZE=1000
+SAVEHIST=800
+
+## Exports
+export EDITOR='vim'
+export VISUAL='vim'
+
+## Not parts of words
+WORDCHARS=${WORDCHARS//\/[&.;]}
+
+## setopt
+setopt auto_cd
+setopt prompt_subst

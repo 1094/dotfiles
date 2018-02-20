@@ -1,0 +1,10 @@
+# wallpaper
+sh ~/.fehbg &
+
+# compton -b &
+
+# map delete to eject
+xmodmap -e "keycode 169 = Delete NoSymbol Delete" &
+
+# startx
+exec i3 

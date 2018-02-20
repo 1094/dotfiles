@@ -1,0 +1,14 @@
+#! /bin/bash
+
+while : ; do
+    echo Looping...
+    unset repeat
+    until [[ $repeat == @(yes|no) ]] ; do
+        read -rp 'Repeat?' repeat
+    done
+    if [[ $repeat == no ]] ; then
+        break
+    fi
+done
+
+echo Done.

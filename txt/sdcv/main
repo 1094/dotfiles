@@ -1,0 +1,2 @@
+#!/bin/bash -x
+sdcv --color $1 | more

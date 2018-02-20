@@ -1,0 +1,48 @@
+#!/bin/bash -x
+# run after sudo script
+
+# install packages
+yaourt -S i3-gaps polybar sncli-git arch-wiki-man b43-firmware pacli bmenu nerd-fonts-complete-mono-glyphs oomox fanficfare 
+
+# font refresh
+fc-cache -f -v
+
+# git the shit
+git clone https://github.com/1094/dotfiles.git
+
+# zsh
+cp -irv ~/dotfiles/zsh ~/.zsh/
+mv ~/.zsh/zshrc ~/.zshrc
+source ~/.zshrc
+
+# home dots
+cp -iv ~/dotfiles/crib/gmrunrc ~/.gmrunrc
+cp -iv ~/dotfiles/crib/vimrc ~/.vimrc
+vim +PluginINstall +qall
+cp -iv ~/dotfiles/crib/Xdefaults ~/.Xdefaults
+cp -iv ~/dotfiles/crib/zprofile ~/.zprofile
+cp -iv ~/dotfiles/crib/xinitrc ~/.xinitrc
+
+## .config 
+cp -irv ~/dotfiles/config/* ~/.config
+
+## .config scripts
+chmod +x ~/.config/polybar/launch
+
+# usb files
+mkdir ~/.config/rclone/
+cp /mnt/config/rclone.conf ~/.config/rclone/
+cp /mnt/config/quickmarks ~/.config/qutebrowser/
+
+# scripts and such
+mv dotfiles/txt ~/txt
+chmod +x ~/txt/blog/* ~/txt/music/* ~/txt/nav/* ~/txt/practice/* ~/txt/sdcv/* ~/txt/setting/*
+
+# rmf set-up
+cp -irv /mnt/rmf ~/rmf
+mkdir ~/py3.env
+virtualenv ~/py3.env
+cd ~/py3.env
+. bin/activate
+pip install pytumblr
+deactivate

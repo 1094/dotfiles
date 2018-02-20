@@ -1,0 +1,28 @@
+"====== Required ===============
+set nocompatible
+filetype off
+"====== Vundle Start ===============
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"====== Plugins ===============
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+"====== Vundle Finish ===============
+call vundle#end()
+filetype plugin indent on
+"====== Hightlight ======
+hi clear SpellBad
+hi SpellBad term=NONE ctermbg=NONE cterm=underline
+hi clear SpellCap
+hi SpellCap term=NONE ctermbg=NONE cterm=NONE
+"====== Interface ======
+set mouse=a
+set linebreak
+set wrap
+set nolist
+"set number
+syntax on 
+set spelllang=en_us
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set showcmd

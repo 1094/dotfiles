@@ -1,0 +1,41 @@
+#!/bin/bash -x
+# `su` then run
+
+# search and set console font
+echo "KEYMAP=us" > /etc/vconsole.conf
+cd /usr/share/kbd/consolefonts
+ls | grep gr928
+echo "gr928-8X16-thin? [y/n]"
+read -rp font
+if [[ $font == "n" ]] ; then
+    echo "boo."
+    echo "FONT=Lat2-Terminus16" >> /etc/vconsole.conf
+    setfont Lat2-Terminus16
+    
+elif [[ $font == "y" ]] ; then
+    echo "yay"
+    echo "FONT=gr928-8x16-thin" >> /etc/vconsole.conf
+    setfont gr928-8x16-thin
+fi
+
+# fn key happiness
+echo 'options hid_apple fnmode=0' > /etc/modprobe.d/hid_apple.conf
+
+# add aur
+echo >> /etc/pacman.conf
+echo '[archlinuxfr]' >> /etc/pacman.conf
+echo 'SigLevel = Never' >> /etc/pacman.conf
+echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
+
+# refresh keys
+pacman-key --init
+pacman-key --populate archlinux
+pacman-key --refresh
+
+pacman Syy
+
+pacman -S base-devel thunderbird qutebrowser vim zsh zsh-syntax-highlighting termite unclutter tree sdcv ranger atool highlight poppler mupdf virtualenv imagemagick htop gthumb gmrun dunst cmatrix rclone scrot yaourt acpi alsa-utils lxappearance-gtk3 feh oblogout 
+
+mount /dev/sdc1 /mnt
+cp -irv /mnt/themes/* /usr/share/themes/*
+cp -irv /mnt/Paper/ /usr/share/icons/

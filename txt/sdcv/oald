@@ -1,0 +1,2 @@
+#!/bin/bash -x
+sdcv --color -u "Oxford Advanced Learner's Dictionary" 'Concise Oxford Thesaurus 2nd Ed. (Eng-Eng)' $1 | more
