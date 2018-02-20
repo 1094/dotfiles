@@ -1,3 +1,0 @@
-#!/bin/bash -e
-day=$(date +'%m-%d')
-vim -c :Goyo $HOME/day/"$day".md

@@ -1,2 +1,0 @@
-#!/bin/bash -x
-sdcv --color -u 'WordNet' 'English Thesaurus' $1 | more

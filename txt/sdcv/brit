@@ -1,2 +1,0 @@
-#!/bin/bash -x
-sdcv --color -u 'The Britannica Concise' $1 | less -CX
