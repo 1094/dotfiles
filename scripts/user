@@ -2,7 +2,7 @@
 # run after sudo script
 
 # install packages
-yaourt -S i3-gaps polybar sncli-git arch-wiki-man b43-firmware pacli bmenu nerd-fonts-complete-mono-glyphs oomox fanficfare 
+yaourt -S i3-gaps polybar sncli-git arch-wiki-man b43-firmware pacli bmenu nerd-fonts-complete-mono-glyphs oomox fanficfare gitbook-editor 
 
 # font refresh
 fc-cache -f -v
@@ -26,15 +26,13 @@ cp -iv ~/dotfiles/crib/xinitrc ~/.xinitrc
 ## .config 
 cp -irv ~/dotfiles/config/* ~/.config
 
-## .config scripts
-chmod +x ~/.config/polybar/launch
-
 # usb files
 mkdir ~/.config/rclone/
 cp /mnt/config/rclone.conf ~/.config/rclone/
 cp /mnt/config/quickmarks ~/.config/qutebrowser/
 
 # scripts and such
+chmod +x ~/.config/polybar/launch
 mv dotfiles/txt ~/txt
 chmod +x ~/txt/blog/* ~/txt/music/* ~/txt/nav/* ~/txt/practice/* ~/txt/sdcv/* ~/txt/setting/*
 
