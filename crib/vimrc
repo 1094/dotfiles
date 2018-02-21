@@ -1,28 +1,55 @@
-"====== Required ===============
-set nocompatible
-filetype off
-"====== Vundle Start ===============
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-"====== Plugins ===============
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
-"====== Vundle Finish ===============
-call vundle#end()
-filetype plugin indent on
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/limelight.vim'
+call plug#end()
+
+"====== Airline =============== 
+set laststatus=2
+let g:airline_theme='understated'
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#default#layout = [
+	\ [ 'a', 'c', 'b' ],
+	\ [ 'y', 'z' ]
+	\ ]
+let g:airline_section_c = '%m'
+let g:airline_section_b = '%f %y%r'
+let g:airline_section_z = 'L:%l/%L %d'
+let g:airline#extensions#default#section_truncate_width = {
+      \ 'a': 5,
+      \ 'c': 15,
+      \ 'b': 15,
+      \ 'y': 45,
+      \ 'z': 5,
+      \ }
+
+"====== vim-markdown ======
+set conceallevel=2
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_autowrite = 1
+
 "====== Hightlight ======
 hi clear SpellBad
 hi SpellBad term=NONE ctermbg=NONE cterm=underline
 hi clear SpellCap
 hi SpellCap term=NONE ctermbg=NONE cterm=NONE
+
 "====== Interface ======
 set mouse=a
 set linebreak
 set wrap
 set nolist
-"set number
-syntax on 
 set spelllang=en_us
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set showcmd
+
