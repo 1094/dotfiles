@@ -5,11 +5,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
 Plug 'junegunn/seoul256.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 call plug#end()
-
+"
 "====== Airline =============== 
 set laststatus=2
 let g:airline_theme='understated'
@@ -30,18 +31,13 @@ let g:airline#extensions#default#section_truncate_width = {
       \ 'y': 45,
       \ 'z': 5,
       \ }
-
-"====== vim-markdown ======
-set conceallevel=2
-let g:vim_markdown_no_extensions_in_markdown = 1
-let g:vim_markdown_autowrite = 1
-
+"
 "====== Hightlight ======
 hi clear SpellBad
 hi SpellBad term=NONE ctermbg=NONE cterm=underline
 hi clear SpellCap
 hi SpellCap term=NONE ctermbg=NONE cterm=NONE
-
+"
 "====== Interface ======
 set mouse=a
 set linebreak
@@ -50,4 +46,4 @@ set nolist
 set spelllang=en_us
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set showcmd
-
+set conceallevel=2
