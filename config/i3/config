@@ -9,9 +9,13 @@ set $alt Mod1
 #####################################################
 ## start up programs and always run                ##
 #####################################################
-exec --no-startup-id compton -b
+exec_always --no-startup-id ~/.config/polybar/launch
 exec_always --no-startup-id dunst
 exec_always --no-startup-id unclutter -idle 2
+exec --no-startup-id compton -b
+exec --no-startup-id xautolock -time 10 -locker /home/sir/txt/setting/locker
+exec --no-startup-id /usr/lib/libpolkit-agent-1.so.0.0.0
+exec --no-startup-id gedit 
 
 #####################################################
 ## program and launcher shortcuts                  ##
@@ -33,13 +37,13 @@ bindsym $alt+w exec --no-startup-id feh --randomize --bg-fill $HOME/img/wall/*
 #####################################################
 ## screenshots with scrot                          ##
 #####################################################
-bindsym $mod+F3 --release exec --no-startup-id scrot -u '%S-%F.png' -e 'mv $f ~/img/scrot/' && notify-send "window d(^ ^o)"
-bindsym $mod+F4 --release exec --no-startup-id scrot '%S-%F.png' -e 'mv $f ~/img/scrot/' && notify-send "(o^ ^)b screen"
+bindsym $mod+F3 --release exec --no-startup-id scrot -u '%S-%F.png' -e 'mv $f ~/misc/img/scrot/' && notify-send "window d(^ ^o)"
+bindsym $mod+F4 --release exec --no-startup-id scrot '%S-%F.png' -e 'mv $f ~/misc/img/scrot/' && notify-send "(o^ ^)b screen"
 
 #####################################################
 ## window title font                               ##
 #####################################################
-font pango:Fantasque Sans Mono 1
+font pango:Fantasque Sans Mono 0
 
 #####################################################
 ## windows: split, floating, parent/child          ##
@@ -103,14 +107,18 @@ bindsym $mod+r mode "resize"
 #####################################################
 ## for_windows: border, enable floating            ##
 #####################################################
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 4
+for_window [class="Lxappearance"] floating enable
+for_window [class="Oblogout"] fullscreen enable
 
 #####################################################
 ## workspace naming                                ##
 #####################################################
 set $ws1 1 
-set $ws2 2  
-set $ws3 3 
+set $ws2 2 
+set $ws3 3 
+set $ws4 4 
+set $ws5 5 
 
 #####################################################
 ## workspace & container switching                 ##
@@ -119,6 +127,8 @@ set $ws3 3 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
 
 ## window goes to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -131,7 +141,9 @@ bindsym $alt+Tab workspace next
 #####################################################
 ## workspace assignments                           ##
 #####################################################
-# assign [class="qutebrowser"] $ws9
+assign [class="^Gedit$"] $ws1
+assign [class="qutebrowser"] $ws4
+assign [class="Thunderbird"] $ws5
 
 #####################################################
 ## i3 reload, refresh                              ##
@@ -140,21 +152,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 #####################################################
-## manjaro i3exit                                  ##
+## logout / restart / etc                          ##
 #####################################################
-bindsym $mod+0 mode "$mode_system"
-set $mode_system [l]ock / [e]xit / slee[p] / [r]eboot / [s]hutdown
-mode "$mode_system" {
-    bindsym l exec slimlock, mode "default"
-    bindsym p exec slimlock && systemctl suspend, mode "default"
-    bindsym e exec i3-msg exit, mode "default"
-    bindsym r exec sudo reboot, mode "default"
-    bindsym s exec sudo shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+bindsym $mod+0 exec oblogout
 
 #####################################################
 ## offical i3exit                                  ##
@@ -182,9 +182,8 @@ client.placeholder      #1c2023 #1c2023 #c7ccd1 #1c2023
 client.background       #f3f4f5
 
 #####################################################
-## status bar (polybar)                            ##
+## status bar (polybar) see start-up               ##
 #####################################################
-exec_always --no-startup-id ~/.config/polybar/scripts/launch
 
 #####################################################
 ## The END.                    Thanks for playing  ##
