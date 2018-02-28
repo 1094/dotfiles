@@ -6,14 +6,19 @@ endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
-Plug 'junegunn/seoul256.vim'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 call plug#end()
 "
-"====== Airline =============== 
+"====== Goyo ======
+"autocmd vimenter * Goyo
+let g:goyo_width = 90
+nnoremap <leader>g :<C-U>Goyo<CR>
+"
+"====== Airline ======
+let g:airline_theme='base16_ashes'
 set laststatus=2
-let g:airline_theme='understated'
+"let g:airline_theme='understated'
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -47,3 +52,68 @@ set spelllang=en_us
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set showcmd
 set conceallevel=2
+
+"====== Goyo Functions ======
+"Ensure :q to quit even when Goyo is active
+
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
+endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+"
+"====== Ranger ======
+function! RangeChooser()
+    let temp = tempname()
+    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
+    " with ranger 1.4.2 through 1.5.0 instead.
+    "exec 'silent !ranger --choosefile=' . shellescape(temp)
+    if has("gui_running")
+        exec 'silent !xterm -e ranger --choosefiles=' . shellescape(temp)
+    else
+        exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    endif
+    if !filereadable(temp)
+        redraw!
+        " Nothing to read.
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        redraw!
+        " Nothing to open.
+        return
+    endif
+    " Edit the first item.
+    exec 'edit ' . fnameescape(names[0])
+    " Add any remaning items to the arg list/buffer list.
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+    redraw!
+endfunction
+command! -bar RangerChooser call RangeChooser()
+nnoremap <leader>r :<C-U>RangerChooser<CR>
+"
+"====== md (just in case) ======
+autocmd BufNewFile,BufRead *.markdown,*.md,*.mdown,*.mkd,*.mkdn,*.mdwn
+      \ if &ft =~# '^\%(conf\|modula2\)$' |
+      \   set ft=markdown |
+      \ else |
+      \   setf markdown |
+      \ endif
