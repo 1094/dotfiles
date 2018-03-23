@@ -3,7 +3,7 @@ auto-ls () { ls -F --color=auto; }
 chpwd_functions=( auto-ls $chpwd_functions )
 
 # battery
-# bat () { acpi | cut -c25-27 }
+bat () { acpi | cut -c25-27 }
 
 # console colors -- should be Base16 Ashses
 if [ "$TERM" = "linux" ]; then
@@ -26,4 +26,8 @@ if [ "$TERM" = "linux" ]; then
     echo -e "\e]PFf3f4f5"
     # for background artifacting
     clear
+fi
+
+if [ "$TERM" = "linux" ]; then
+    RPROMPT="[%t | $(bat)%]" 
 fi
