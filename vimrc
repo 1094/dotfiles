@@ -21,16 +21,16 @@ syntax on
 set mouse-=a
 set linebreak
 set wrap
+set nolist
 set spelllang=en_us
 set smarttab
 set showcmd
 set conceallevel=3
 set scrolloff=2
 set laststatus=2
-set showtabline=2
-set nosmd
 set incsearch
 set noshowmatch
+set noshowmode
 " ====== spaces ======
 set listchars=trail:◦,tab:▸-,nbsp:+
 " ====== highlight ======
@@ -42,6 +42,7 @@ hi SpellCap term=NONE ctermbg=NONE cterm=NONE
 cabbrev sma set mouse=a<CR>
 cabbrev sm- set mouse-=a<CR>
 cabbrev vv e ~/.vimrc<CR>
+cabbrev vm e ~/.vim/more.vim<CR>
 cabbrev help tab help
 cabbrev fm RangerChooser<CR>
 cabbrev cc close<CR>
@@ -52,6 +53,7 @@ cabbrev ps Pad search<CR>
 cabbrev em NotMuch<CR>
 cabbrev def call SearchWord()<CR>
 cabbrev G Goyo<CR>
+cabbrev cr %s/b0
 
 " ====== leader ======
 nnoremap <leader><leader> :ls<CR>
@@ -81,12 +83,7 @@ let g:MRU_Max_Menu_Entries=15
 
 " ====== fauntain ======
 au BufRead,BufNewFile *.fountain set filetype=fountain
-
-" ====== buftabline ======
-let g:buftabline_numbers=1
-let g:buftabline_show=2
-let g:buftabline_indicators=1
-let g:buftabline_separators=1
+au BufRead,BufNewFile *.txt set filetype=markdown
 
 " ====== others ======
 so ~/.vim/more.vim

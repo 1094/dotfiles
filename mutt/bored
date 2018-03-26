@@ -1,0 +1,16 @@
+# Account Settings -----------------------------------
+set signature = ~/.mutt/b-sig 
+
+# Default inbox.
+set spoolfile = "~/mail/bored/INBOX"
+set mbox = "~/mail/bored/archive"
+set postponed = "~/mail/bored/drafts"
+
+# Compose View Options -------------------------------
+set realname = "Dia Random"
+
+# Sending Mail ---------------------------------------
+set use_from=yes
+set from=@gmail.com
+set sendmail="/usr/bin/msmtp -a bored"
+set sendmail_wait = 0

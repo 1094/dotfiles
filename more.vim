@@ -1,7 +1,8 @@
-" =========================
-" ====== status line ======
-" =========================
-let g:word_count="words"
+" =======================
+" ====== wordcount ======
+" =======================
+" cuz works w/all files
+let g:word_count="..."
 function WordCount()
 	return g:word_count
 endfunction
@@ -16,7 +17,7 @@ function UpdateWordCount()
 endfunction
 " Update the count when cursor is idle in command or insert mode.
 " Update when idle for 1000 msec (default is 4000 msec).
-set updatetime=500
+set updatetime=50
 augroup WordCounter
 	au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
@@ -28,34 +29,66 @@ let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s '
+let g:airline#extensions#wordcount#enabled = 0
 " ====== status line variables ======
-" section_a =  mode
 let g:airline_section_b = '%m %r'
 let g:airline_section_c = '%f'
-let g:airline_section_x = '%{WordCount()}'
-let g:airline_section_y = '%p%% %L'
-" section_z = this will be the timer section 
+" let g:airline_section_x =
+let g:airline_section_y = '%5{WordCount()}'
+let g:airline_section_z = '%4L'
 " ====== statusline layout ======
 let g:airline#extensions#default#layout = [
 	\ [ 'a', 'b', 'c' ],
-	\ [ 'x', 'y' ]
+	\ [ 'y', 'z' ]
 	\ ]
 let g:airline#extensions#default#section_truncate_width = {
 	\ 'a': 1,
 	\ 'b': 1,
 	\ 'c': 1,
 	\ 'x': 1,
-	\ 'y': 1
+	\ 'y': 1,
+	\ 'z': 1,
 	\ }
-let g:airline_symbols_ascii = 1
 let g:airline_theme = 'papercolor'
+let g:airline_symbols_ascii = 1
+let g:airline_powerline_fonts = 1
+" ====== symbols ======
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" ====== unicode symbols ======
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = ''
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.whitespace = 'Ξ'
+" ====== airline symbols ======
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 " ==================
 " ====== gvim ======
 " ==================
 set guifont=CodeNewRoman\ NF\ Book\ 10
 set guioptions -=T
 if has("gui_running")
-	nnoremap <leader>f :Ex<CR>
+	cabbrav fm :Ex<CR>
 endif
 " ====================
 " ====== ranger ======
@@ -101,6 +134,8 @@ endfunction
 
 au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
+au BufEnter *.txt setlocal foldexpr=MarkdownLevel()
+au BufEnter *.txt setlocal foldmethod=expr
 
 set nocompatible
 if has("autocmd")

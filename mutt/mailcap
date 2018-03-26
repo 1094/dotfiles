@@ -1,0 +1,7 @@
+application/msword; catdoc %s ; copiousoutput;
+image/*; feh %s;
+application/pdf; mupdf %s; 
+text/html; elinks -dump ; copiousoutput;
+text/plain; less 
+
+application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
