@@ -7,10 +7,9 @@ set mbox = "~/mail/bored/archive"
 set postponed = "~/mail/bored/drafts"
 
 # Compose View Options -------------------------------
-set realname = "Dia Random"
+set realname = ""
 
 # Sending Mail ---------------------------------------
 set use_from=yes
-set from=@gmail.com
 set sendmail="/usr/bin/msmtp -a bored"
 set sendmail_wait = 0

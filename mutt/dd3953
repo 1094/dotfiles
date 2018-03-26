@@ -7,10 +7,9 @@ set mbox = "~/mail/dd3953/archive"
 set postponed = "~/mail/dd3953/drafts"
 
 # Compose View Options -------------------------------
-set realname = "Dia Allen"
+set realname = ""
 
 # Sending Mail -------------------------------
 set use_from =yes
-set from=dd3953@gmail.com
 set sendmail="/usr/bin/msmtp -a dd3953"
 set sendmail_wait = 0
