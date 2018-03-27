@@ -1,7 +1,7 @@
 #####################################################
 ## i3 config :: version 4.14.1 (2017-09-24)        ##
 #####################################################
-## Mod4 = Super | Mod1 = Alt_L | Num_Lock = Alt_R  ##
+## Mod4 = Super | Mod1 = Alt_L | ? = Alt_R         ##
 #####################################################
 set $mod Mod4
 set $alt Mod1
@@ -12,16 +12,16 @@ set $alt Mod1
 exec_always --no-startup-id ~/.config/polybar/launch
 exec_always --no-startup-id dunst
 exec_always --no-startup-id unclutter -idle 2
+exec_always --no-startup-id feh --bg-fill ~/shat/img/walls/moon.png
 exec --no-startup-id compton -b
 exec --no-startup-id xautolock -time 10 -locker /home/sir/txt/setting/locker
 exec --no-startup-id /usr/lib/libpolkit-agent-1.so.0.0.0
-exec --no-startup-id gedit 
+exec --no-startup-id termite
 
 #####################################################
 ## program and launcher shortcuts                  ##
 #####################################################
 ## launcher
-bindsym $mod+Shift+d exec ~/txt/nav/i3rofi
 bindsym $mod+d exec gmrun
 ## terminal
 bindsym $mod+Return exec termite 
@@ -30,15 +30,16 @@ bindsym $mod+Return exec termite
 bindsym $mod+Shift+q kill
 
 #####################################################
-## setting and sound                               ##
+## background, setting & sound                     ##
 #####################################################
-bindsym $alt+w exec --no-startup-id feh --randomize --bg-fill $HOME/img/wall/*
+bindsym $alt+w exec --no-startup-id feh --randomize --bg-fill ~/shat/img/walls/*
+bindsym $alt+q exec --no-startup-id feh --bg-fill ~/shat/img/walls/moon.png
 
 #####################################################
 ## screenshots with scrot                          ##
 #####################################################
-bindsym $mod+F3 --release exec --no-startup-id scrot -u '%S-%F.png' -e 'mv $f ~/misc/img/scrot/' && notify-send "window d(^ ^o)"
-bindsym $mod+F4 --release exec --no-startup-id scrot '%S-%F.png' -e 'mv $f ~/misc/img/scrot/' && notify-send "(o^ ^)b screen"
+bindsym $mod+F3 --release exec --no-startup-id scrot -u '%S-%F.png' -e 'mv $f ~/shat/img/scrot/' && notify-send "window d(^ ^o)"
+bindsym $mod+F4 --release exec --no-startup-id scrot '%S-%F.png' -e 'mv $f ~/shat/img/scrot/' && notify-send "(o^ ^)b screen"
 
 #####################################################
 ## window title font                               ##
@@ -54,13 +55,17 @@ bindsym $mod+u split h; layout tabbed; exec notif-send "nw-behind"
 bindsym $mod+f fullscreen toggle
 
 ## layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking; exec notify-send "wl-stacked"
-bindsym $mod+w layout tabbed; exec notify-send "wl-tabbed"
-bindsym $mod+e layout toggle split; exec notify-send "wl-normal"
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 ## floating containers
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
+bindsym $mod+8 floating toggle
+bindsym $mod+Tab focus mode_toggle
+
+## scratchpad
+bindsym $mod+9 move scratchpad
+bindsym $mod+0 scratchpad show
 
 ## move a floating window
 floating_modifier $mod
@@ -115,10 +120,8 @@ for_window [class="Oblogout"] fullscreen enable
 ## workspace naming                                ##
 #####################################################
 set $ws1 1 
-set $ws2 2 
-set $ws3 3 
-set $ws4 4 
-set $ws5 5 
+set $ws2 2 
+set $ws3 3 
 
 #####################################################
 ## workspace & container switching                 ##
@@ -128,12 +131,12 @@ bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
 
 ## window goes to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
 
 ## toggle workspaces
 bindsym $alt+Tab workspace next
@@ -141,9 +144,8 @@ bindsym $alt+Tab workspace next
 #####################################################
 ## workspace assignments                           ##
 #####################################################
-assign [class="^Gedit$"] $ws1
-assign [class="qutebrowser"] $ws4
-assign [class="Thunderbird"] $ws5
+assign [class="^Geany$"] $ws3
+assign [class="qutebrowser"] $ws3
 
 #####################################################
 ## i3 reload, refresh                              ##
@@ -154,7 +156,7 @@ bindsym $mod+Shift+r restart
 #####################################################
 ## logout / restart / etc                          ##
 #####################################################
-bindsym $mod+0 exec oblogout
+bindsym $mod+Shift+0 exec oblogout
 
 #####################################################
 ## offical i3exit                                  ##
@@ -174,7 +176,7 @@ gaps outer 5
 #####################################################
 ## theme colors: base16 Ashes by Jannik Siebert    ##
 #####################################################
-client.focused          #ae95c7 #ae95c7 #1c2023 #393f45
+client.focused          #81a2be #812abe #1c2023 #393f45
 client.focused_inactive #565e65 #565e65 #747c84 #393f45
 client.unfocused        #393f45 #393f45 #747c84 #393f45
 client.urgent           #565e65 #c7ae95 #f3f4f5 #c7ae95
@@ -184,6 +186,45 @@ client.background       #f3f4f5
 #####################################################
 ## status bar (polybar) see start-up               ##
 #####################################################
+
+#####################################################
+## Manjaro Gap Mode (a bit tweaked)                ##
+#####################################################
+set $mode_gaps Gaps: [o]outer [i]nner
+set $mode_gaps_outer [current] +|-|0 [all] shift & +|-|0
+set $mode_gaps_inner [current] +|-|0 [all] shift & +|-|0
+
+bindsym $mod+Shift+w mode "$mode_gaps"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "$mode_gaps"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 #####################################################
 ## The END.                    Thanks for playing  ##
