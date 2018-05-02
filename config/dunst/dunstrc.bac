@@ -297,15 +297,15 @@
 # vim: ft=cfg
 [base16_low]
     msg_urgency = low
-    background = "#383830"
-    foreground = "#75715e"
+    background = "#252525"
+    foreground = "#525252"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#49483e"
-    foreground = "#f8f8f2"
+    background = "#464646"
+    foreground = "#b9b9b9"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#f92672"
-    foreground = "#f5f4f1"
+    background = "#7c7c7c"
+    foreground = "#e3e3e3"

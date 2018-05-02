@@ -15,9 +15,7 @@ function UpdateWordCount()
 	endwhile
 	let g:word_count = n
 endfunction
-" Update the count when cursor is idle in command or insert mode.
-" Update when idle for 1000 msec (default is 4000 msec).
-set updatetime=50
+set updatetime=100
 augroup WordCounter
 	au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
@@ -33,7 +31,7 @@ let g:airline#extensions#wordcount#enabled = 0
 " ====== status line variables ======
 let g:airline_section_b = '%m %r'
 let g:airline_section_c = '%f'
-" let g:airline_section_x =
+"let g:airline_section_x = 
 let g:airline_section_y = '%5{WordCount()}'
 let g:airline_section_z = '%4L'
 " ====== statusline layout ======
@@ -56,32 +54,6 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-" ====== unicode symbols ======
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = ''
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = 'Ξ'
-" ====== airline symbols ======
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-
 " ==================
 " ====== gvim ======
 " ==================
@@ -136,8 +108,9 @@ au BufEnter *.md setlocal foldexpr=MarkdownLevel()
 au BufEnter *.md setlocal foldmethod=expr
 au BufEnter *.txt setlocal foldexpr=MarkdownLevel()
 au BufEnter *.txt setlocal foldmethod=expr
+au BufEnter *.mkd setlocal foldexpr=MarkdownLevel()
+au BufEnter *.mkd setlocal foldmethod=expr
 
-set nocompatible
 if has("autocmd")
 	filetype plugin indent on
 endif

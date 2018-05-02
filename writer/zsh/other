@@ -1,5 +1,5 @@
 # `ls` after `cd`
-auto-ls () { ls -F --color=auto; }
+auto-ls () { ls -F; }
 chpwd_functions=( auto-ls $chpwd_functions )
 
 # battery

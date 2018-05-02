@@ -80,24 +80,24 @@ case "$extension" in
     # PDF documents:
     pdf)
         try pdftotext -l 10 -nopgbrk -q "$path" - && \
-            { dump | trim | fmt -s -w $width; exit 0; } || exit 1;;
+            { dump | trim | fmt -w $width; exit 0; } || exit 1;;
     # BitTorrent Files
     torrent)
         try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
     # MS Files
     doc|docx|rtf|xls|ppt)
-        try catdoc "$path" && { dump | trim | fmt -s -w $width; exit 5; } || exit 1;;
+        try catdoc "$path" && { dump | trim | fmt -w $width; exit 5; } || exit 1;;
     # ODT Files
     odt|ods|odp|sxw)
-        try odt2txt "$path" && { dump | trim | fmt -s -w $width; exit 5; } || exit 1;;
+        try odt2txt "$path" && { dump | trim | fmt -w $width; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
-        try elinks -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
-	try w3m    -dump "$path" && { dump | trim | fmt -s -w $width; exit 4; }
+        try elinks -dump "$path" && { dump | trim | fmt -w $width; exit 4; }
+	try w3m    -dump "$path" && { dump | trim | fmt -w $width; exit 4; }
 	;; # fall back to highlight/cat if the text browsers fail
     # Markdown
     markdown|md)
-    	try ansimd "$path" && { dump | trim | fmt -s -w $width; exit 5; } || exit 2;;
+    	try ansimd "$path" && { dump | trim | fmt -w $width; exit 5; } || exit 2;;
 esac
 
 case "$mimetype" in
@@ -115,7 +115,8 @@ case "$mimetype" in
         exit 2;;
     # Ascii-previews of images:
     image/*)
-        img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
+        catimg -w "$path" && exit 4 || exit 1
+	try img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
     # Display information about media files:
     video/* | audio/*)
         exiftool "$path" && exit 5

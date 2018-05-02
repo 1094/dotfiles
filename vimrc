@@ -16,7 +16,6 @@ call plug#end()
 " ====== on ======
 filetype plugin on
 syntax on
-
 " ====== set ======
 set mouse-=a
 set linebreak
@@ -29,31 +28,21 @@ set conceallevel=3
 set scrolloff=2
 set laststatus=2
 set incsearch
-set noshowmatch
-set noshowmode
-" ====== spaces ======
-set listchars=trail:◦,tab:▸-,nbsp:+
+
+" ====== list ======
+set listchars=trail:•,tab:▸-,nbsp:+
+
 " ====== highlight ======
 hi clear SpellBad
-hi SpellBad term=NONE ctermbg=NONE cterm=underline
+hi SpellBad ctermfg=DarkMagenta ctermbg=NONE cterm=underline
 hi clear SpellCap
-hi SpellCap term=NONE ctermbg=NONE cterm=NONE
-" ====== cabbrev ======
-cabbrev sma set mouse=a<CR>
-cabbrev sm- set mouse-=a<CR>
-cabbrev vv e ~/.vimrc<CR>
-cabbrev vm e ~/.vim/more.vim<CR>
-cabbrev help tab help
-cabbrev fm RangerChooser<CR>
-cabbrev cc close<CR>
-cabbrev mr MRU<CR>
-cabbrev pn Pad new<CR>
-cabbrev pl Pad ls<CR>
-cabbrev ps Pad search<CR>
-cabbrev em NotMuch<CR>
-cabbrev def call SearchWord()<CR>
-cabbrev G Goyo<CR>
-cabbrev cr %s/b0
+hi SpellCap ctermfg=NONE ctermbg=NONE cterm=NONE
+hi clear Spelllocal
+hi Spelllocal ctermfg=DarkMagenta ctermbg=NONE cterm=NONE
+hi clear SpellRare
+hi SpellRare ctermfg=LightMagenta ctermbg=NONE cterm=NONE
+hi clear Visual
+hi Visual ctermfg=Black ctermbg=Cyan cterm=NONE
 
 " ====== leader ======
 nnoremap <leader><leader> :ls<CR>
@@ -63,13 +52,17 @@ noremap j gj
 noremap k gk
 noremap gk k
 noremap gj j
+noremap 0 g0
+noremap $ g$
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
-map Tab :bn<CR>
 map -w :w!
 map -b :b!
 map -q :q!
 map -e :e!
+
+noremap <Tab> :bn<CR>
+noremap <S-Tab> :wincmd w<CR>
 " ====== netrw ====== 
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -85,5 +78,9 @@ let g:MRU_Max_Menu_Entries=15
 au BufRead,BufNewFile *.fountain set filetype=fountain
 au BufRead,BufNewFile *.txt set filetype=markdown
 
+" ====== autoplugs ======
+let g:loaded_matchparen = 1
+
 " ====== others ======
 so ~/.vim/more.vim
+so ~/.vim/brev.vim

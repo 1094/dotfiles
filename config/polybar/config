@@ -38,7 +38,7 @@ font-0 = "SauceCodePro Nerd Font:pixelsize=11;3"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 modules-left = wlan i3 xwindow
 modules-center = time eth 
-modules-right = xkeyboard mem volume battery
+modules-right = xkeyboard volume battery
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 tray-position = right
@@ -100,10 +100,10 @@ enable-scroll = false
 wrapping-scroll = false
 reverse-scroll = false
 ;;;;;;;;;;;;;;;;;;;;;;
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-default = 
+;ws-icon-0 = 1;
+;ws-icon-1 = 2;
+;ws-icon-2 = 3;
+;ws-icon-default = 
 ;;;;;;;;;;;;;;;;;;;;;;
 format = <label-state> <label-mode>
 label-mode = %mode%
@@ -112,47 +112,41 @@ label-mode-background = ${colors.black}
 label-mode-padding = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 ; focused = Active workspace on focused monitor
-label-focused = %icon%
+label-focused = %name%
 label-focused-background = ${colors.grey}
 label-focused-foreground = ${colors.black}
 label-focused-padding = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
+label-unfocused = %name%
 label-unfocused-background = ${colors.black}
 label-unfocused-foreground = ${colors.grey}
 label-unfocused-padding = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 ; visible = Active workspace on unfocused monitor
-label-visible = %icon%
+label-visible = %name%
 label-visible-background = ${colors.black}
 label-visible-padding = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 ; urgent = Workspace with urgency hint set
-label-urgent = %icon%
+label-urgent = %name%
 label-urgent-background = ${colors.black}
 label-urgent-foreground = ${colors.red}
 label-urgent-padding = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 ;[module/mpd]
-;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 ;[module/xbacklight]
-;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 ;[module/backlight-acpi]
-;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 ;[module/cpu]
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/mem]
 type = internal/memory
 interval = 2
-format = RAM:<label>
-label = %percentage_free%%
-label-foreground = ${colors.green}
+format = R)<label>
+label = %gb_used%
+label-foreground = ${colors.blue}
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/wlan]
@@ -160,10 +154,10 @@ type = internal/network
 interface = wlp3s0b1
 interval = 2
 ;;;;;;;;;;;;;;;;;;;;;;
-label-connected = 
+label-connected = 
 label-connected-foreground = ${colors.green}
 ;;;;;;;;;;;;;;;;;;;;;;;
-label-disconnected = 
+label-disconnected = 
 label-disconnected-foreground = ${colors.silver}
 ;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
@@ -190,12 +184,12 @@ label = %time%
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/volume]
 type=internal/volume
-format-volume = <label-volume>
-label-volume =  %percentage%
+format-volume = Vol:<label-volume>
+label-volume = %percentage%
 label-foreground = ${colors.silver}
 ;;;;;;;;;;;;;;;;;;;;;;
-label-muted =  
-label-muted-foreground = ${colors.yellow}
+label-muted = Vol:00
+label-muted-foreground = ${colors.silver}
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/battery]
@@ -204,15 +198,16 @@ battery = BAT0
 adapter = ADP1
 full-at = 98
 ;;;;;;;;;;;;;;;;;;;;;;
-format-discharging = <label-discharging>
+format-discharging = Bat:<label-discharging>
 label-discharging-foreground = ${colors.white}
-format-discharging-suffix = " "
+;format-discharging-suffix = " "
 format-discharging-suffix-foreground = ${colors.red}
 ;;;;;;;;;;;;;;;;;;;;;;
 format-full-prefix-foreground = ${colors.green}
 ;;;;;;;;;;;;;;;;;;;;;;
-format-charging = <label-charging> <animation-charging>
-label-charging-foreground = ${colors.white}
+;format-charging = <label-charging> <animation-charging>
+format-charging = Bat:<label-charging>
+label-charging-foreground = ${colors.yellow}
 ;;;;;;;;;;;;;;;;;;;;;;
 animation-charging-0 = 
 animation-charging-1 = 
