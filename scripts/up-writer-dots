@@ -4,6 +4,7 @@ dmail=dropbox:writer/email
 # start
 cd $HOME/.config/
 cp -t $HOME/.dotfiles/config -rv compton.conf dunst/ i3/ neofetch/ polybar/ termite/ user-dirs.dirs
+cp user-dirs.dirs $HOME/.dotfiles/writer/
 cd $HOME/.config/ranger
 cp -t $HOME/.dotfiles/config/ranger/ -v devicons.py rc.conf rifle.conf scope.sh
 cd $HOME/.config/qutebrowser
