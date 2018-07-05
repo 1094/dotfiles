@@ -167,7 +167,7 @@
     # Print a notification on startup.
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
-    startup_notification = true
+    startup_notification = false
 
     ### Legacy
 
@@ -297,15 +297,15 @@
 # vim: ft=cfg
 [base16_low]
     msg_urgency = low
-    background = "#252525"
-    foreground = "#525252"
+    background = "#292424"
+    foreground = "#655d5d"
 
 [base16_normal]
     msg_urgency = normal
-    background = "#464646"
-    foreground = "#b9b9b9"
+    background = "#585050"
+    foreground = "#8a8585"
 
 [base16_critical]
     msg_urgency = critical
-    background = "#7c7c7c"
-    foreground = "#e3e3e3"
+    background = "#ca4949"
+    foreground = "#e7dfdf"

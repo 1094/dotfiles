@@ -1,26 +1,25 @@
 # wallpaper
 sh ~/.fehbg &
-
 # compton -b &
 
 ## Note to self, keys: no mod, shift, switch
 # map delete to eject
 xmodmap -e "keycode 169 = Delete NoSymbol Delete"
-# map ALT_R to Insert
-xmodmap -e "keycode 108 = Insert NoSymbol Insert"
 # caps_lock = modeswitch
 xmodmap -e "keycode 66 = Mode_switch"
-
 # caps+arrows
 xmodmap -e "keycode 113 = Left NoSymbol Home"
 xmodmap -e "keycode 114 = Right NoSymbol End"
 xmodmap -e "keycode 111 = Up NoSymbol Prior"
 xmodmap -e "keycode 116 = Down NoSymbol Next"
 
-# start the timer
-systemctl --user start offlineimap.timer
 # merge the dot X files
 xrdb -merge .Xresources
+
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+	eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+/usr/bin/xdg-user-dirs-update
 
 # startx
 exec i3 

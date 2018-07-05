@@ -43,6 +43,8 @@ hi clear SpellRare
 hi SpellRare ctermfg=LightMagenta ctermbg=NONE cterm=NONE
 hi clear Visual
 hi Visual ctermfg=Black ctermbg=Cyan cterm=NONE
+hi clear markdownError
+hi link markdownError normal
 
 " ====== leader ======
 nnoremap <leader><leader> :ls<CR>

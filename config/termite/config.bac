@@ -15,53 +15,58 @@ clickable_url = true
 # filer_unmatched_urls = true
 icon_name = termite
 browser = qutebrowser
-font = Lekton Nerd Font Italic 10
+
+font = NanumGothicGoding Regular 10
+#font = KoreanSans Regular 12
+#font = FantasqueSansMono Nerd Font Regular 10
+#font = 1HoonDdukbokki Regular 11
 
 [colors]
-# Base16 Grayscale Dark
-# Author: Alexandre Gavioli (https://github.com/Alexx2/)
+# Base16Atelier Cave Light 
+# Author: Bram de Haan (http://atelierbramdehaan.nl)
 
-foreground      = #b9b9b9
-foreground_bold = #e3e3e3
-cursor          = #e3e3e3
-background      = #101010
+foreground          = #585260
+foreground_bold     = #26232a
+cursor              = #26232a
+cursor_foreground   = #efecf4
+background          = rgba(239, 236, 244, 1)
 
 # 16 color space
 
 # Black, Gray, Silver, White
-color0  = #101010
-color8  = #525252
-color7  = #b9b9b9
-color15 = #f7f7f7
+color0  = #efecf4
+color8  = #7e7887
+color7  = #585260
+color15 = #19171c
 
 # Red
-color1  = #7c7c7c
-color9  = #7c7c7c
+color1  = #be4678
+color9  = #be4678
 
 # Green
-color2  = #8e8e8e
-color10 = #8e8e8e
+color2  = #2a9292
+color10 = #2a9292
 
 # Yellow
-color3  = #a0a0a0
-color11 = #a0a0a0
+color3  = #a06e3b
+color11 = #a06e3b
 
 # Blue
-color4  = #686868
-color12 = #686868
+color4  = #576ddb
+color12 = #576ddb
 
 # Purple
-color5  = #747474
-color13 = #747474
+color5  = #955ae7
+color13 = #955ae7
 
 # Teal
-color6  = #868686
-color14 = #868686
+color6  = #398bc6
+color14 = #398bc6
 
 # Extra colors
-color16 = #999999
-color17 = #5e5e5e
-color18 = #252525
-color19 = #464646
-color20 = #ababab
-color21 = #e3e3e3
+color16 = #aa573c
+color17 = #bf40bf
+color18 = #e2dfe7
+color19 = #8b8792
+color20 = #655f6d
+color21 = #26232a

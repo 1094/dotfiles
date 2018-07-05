@@ -49,7 +49,7 @@ let g:airline#extensions#default#section_truncate_width = {
 	\ }
 let g:airline_theme = 'papercolor'
 let g:airline_symbols_ascii = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " ====== symbols ======
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
