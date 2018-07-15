@@ -2,25 +2,27 @@
 # varibles
 dmail=dropbox:writer/email
 # start
+cd $HOME
+cp -v $HOME/.bashrc $HOME/.dotfiles/writer/bashrc
+cp -v $HOME/.bash_profile $HOME/.dotfiles/writer/bash_profile
 cd $HOME/.config/
 cp -t $HOME/.dotfiles/config -rv compton.conf dunst/ i3/ neofetch/ polybar/ termite/ user-dirs.dirs
-cp user-dirs.dirs $HOME/.dotfiles/writer/
 cd $HOME/.config/ranger
 cp -t $HOME/.dotfiles/config/ranger/ -v devicons.py rc.conf rifle.conf scope.sh
 cd $HOME/.config/qutebrowser
 cp -t $HOME/.dotfiles/qutebrowser -v keys.conf qutebrowser.conf 
-echo "rclone sync"
+echo "rclone: bookmarks"
 rclone sync quickmarks dropbox:writer/
 cd $HOME
 cp -v .gmrunrc $HOME/.dotfiles/gmrunrc
 cp -v .fehbg $HOME/.dotfiles/fehbg
 cp .vim/more.vim $HOME/.dotfiles/
-echo "more rclone"
+echo "rclone: vim brev"
 rclone sync .vim/brev.vim dropbox:writer/
-echo "..."
+echo "rclone: notmuch and mutt"
 rclone sync .mutt/ $dmail/mutt
 rclone sync .notmuch-config $dmail
-echo "..."
+echo "rclone: offlineimap and msmtp"
 rclone sync .offlineimaprc $dmail
 rclone sync .msmtprc $dmail
 echo "rclone stuff done"

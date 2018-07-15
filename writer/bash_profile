@@ -1,0 +1,13 @@
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+read -pr "[x]org or [t]ty? " init
+	if [[ $init = "t" ]]; then
+		echo "Welcome to the Command Line."
+		exit
+	elif [[ $init = "x" ]]; then
+		echo "Welcome to i3wm."
+		exec startx
+	else
+		echo "Um, [x] or [t], please."
+		continue
+	fi
+fi

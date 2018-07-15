@@ -27,7 +27,7 @@ alias sncli-i="sncli -c $HOME/.sncli/rcs/cloud"
 alias notmuch-show="notmuch show --entire-thread=true --format=text"
 alias esync="offlineimap -q"
 # MUTT
-alias mutt="offlineimap -q && mutt -F ~/.mutt/muttrc"
+alias mutt="offlineimap -q -u quiet && mutt -F ~/.mutt/muttrc"
 # OTHER
 alias pless="$HOME/txt/read/pandoc-and-less"
 alias def="$HOME/txt/s-sdcv"
@@ -80,3 +80,4 @@ alias f3="fanficfare -p -o is_adult=true"
 alias b16="base16-manager"
 alias mcat="ansimd"
 alias mp3g="mp3gain -k -r"
+alias wta="cat $HOME/.zsh/alias | grep"
