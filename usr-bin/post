@@ -1,0 +1,126 @@
+#!/bin/bash
+set -e
+
+    echo
+    tput setaf 3
+   . $HOME/rmf/py3.env/bin/activate && echo "(py3.env)"
+    tput sgr 0
+while true
+do
+
+    read -rp "  create a post? " play
+
+        if [[ $play == "no" ]] ; then
+           deactivate && echo "py3.env: deactivated"
+            tput setaf 4
+            echo "Until next time."
+            tput sgr 0
+            exit 0
+
+        elif [[ $play == "yes" ]] ; then
+            post=$HOME/rmf/active
+            cat $HOME/rmf/header > $post
+
+                while : ; do
+                    read -rp "  written by: " bit
+                    cat $HOME/rmf/posted | egrep -wi --color "${bit,,}" || echo "..."
+                    
+		    unset repeat
+                    until [[ $repeat == @(yes|no) ]] ; do
+
+                    read -rp "   been posted? " repeat
+                done
+
+                if [[ $repeat == "no" ]] ; then
+                    tput setaf 2
+                    echo "let's get this post started."
+                    tput sgr 0
+
+                        read -rp "  was that they full name? " bit2
+                            if [[ $bit2 == "yes" ]]; then
+                                author=$bit
+                            else
+                                read -a author -rp "   well? "
+                                author=${author[@]}
+                            fi
+                break
+                fi
+                done
+                       
+            read -a title -rp "  okay, so $author wrote... "
+            title=${title[@]}
+
+            read -a summary -rp  "  and the summary: "
+            summary=${summary[@]}
+
+            read -rp "  [a]o3, [f]fn, [p]&p, [l]j, [o]ther? " www
+                if [[ $www == "a" ]] ; then
+                    read -rp "  ao3 id? " aid
+                    link=http://archiveofourown.org/works/$aid
+                    site=ao3
+                elif [[ $www == "f" ]] ; then
+                    read -rp "  ffn id? " fid
+                    link=http://www.fanfiction.net/s/$fid
+                    site=ffn
+                elif [[ $www == "p" ]] ; then 
+                    read -rp "  link? " link  
+                    site="p&p"
+                    link=$link
+                elif [[ $www == "l" ]] ; then
+                    read -rp "  link? " link
+                    site=lj
+                    link=$link
+	    	elif [[ $www == "o" ]] ; then
+		     read -rp "  link? " link
+		     site=other
+		     link=$link
+                fi
+    
+            read -rp "  chapters q) 1-2, m) 3-9, l) 10-20, n) 21+, u) wip? " sandl
+                if [[ $sandl == "u" ]] ; then
+                    status=wip
+                    length=""
+                elif [[ $sandl == "q" ]] ; then
+                    status=complete
+                    length=quickie
+                elif [[ $sandl == "m" ]] ; then
+                    status=complete
+                    length=medium
+                elif [[ $sandl == "l" ]] ; then
+                    status=complete
+                    length=longer
+                elif [[ $sandl == "n" ]] ; then
+                    status=complete
+                    length=novel
+                fi
+    
+            read -rp "  series? " after
+                if [[ $after == "no" ]] ; then
+                    echo "client.create_text('randommirandyfics', state=\"queue\", format=\"markdown\", tags=[\"mirandy\", \""$title"\", \""$author"\", \""$site"\", \""$status"\", \""$length"\"], title=\"$summary\", body=\"[$title]($link) by $author\")" >> $post
+                elif [[ $after == "yes" ]] ; then
+                    read -a title2 -rp "  follows... "
+                    title2=${title2[@]}
+                    read -rp "  link? " link2
+                    echo "client.create_text('randommirandyfics', state=\"queue\", format=\"markdown\", tags=[\"mirandy\", \""$title"\", \""$author"\", \""$site"\", \""$status"\", \""$length"\"], title=\"$summary\", body=\"[$title]($link) by $author<br/>Follows [$title2]($link2)\")" >> $post
+                fi
+    
+            vim -c :Goyo $post
+            echo "..."
+        
+            read -rp "  post it? " queue
+                if [[ $queue == "no" ]] ; then
+                    tput setaf 8
+                    echo "okay, post saved"
+                    cp $post $HOME/rmf/saved
+                    tput sgr 0
+                elif [[ $queue == "yes" ]] ; then
+                    python $post
+                    echo "${title,,} -- ${author,,}" >> $HOME/rmf/posted
+                    tput setaf 2
+                    echo "  it is done."
+                    tput sgr 0
+                    echo
+                fi
+        continue
+        fi
+done

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+# wrapper for python2 epub reader
+clear
+python2 ~/epub/reader.py $1
+reset
