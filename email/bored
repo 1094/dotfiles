@@ -1,0 +1,23 @@
+# Account Settings -----------------------------------
+set signature = ~/.mutt/bsig 
+
+# Default inbox.
+set folder = "~/.mail/bored"
+set spoolfile = "~/.mail/bored/INBOX"
+set mbox = "~/.mail/bored/archive"
+set postponed = "~/.mail/bored/drafts"
+set record = "~/.mail/bored/sent"
+
+# Sidebar Options --------------------------------------
+unmailboxes *
+set imap_user = "bor3d"
+mailboxes =INBOX =sent =star =chats =archive
+
+# Compose View Options -------------------------------
+set realname = ""
+
+# Sending Mail ---------------------------------------
+set use_from=yes
+set from=
+set sendmail="/usr/bin/msmtp -a bored"
+set sendmail_wait = 0

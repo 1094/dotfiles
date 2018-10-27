@@ -1,0 +1,23 @@
+# Account Settings -----------------------------------
+set signature = ~/.mutt/dsig
+
+# Default inbox.
+set folder = "~/.mail/dd3953"
+set spoolfile = "~/.mail/dd3953/INBOX"
+set mbox = "~/.mail/dd3953/archive"
+set postponed = "~/.mail/dd3953/drafts"
+set record = "~/.mail/dd3953/sent"
+
+# Sidebar Options --------------------------------------
+unmailboxes *
+set imap_user = "dd3953"
+mailboxes =INBOX =sent =star =chats =archive =worth
+
+# Compose View Options -------------------------------
+set realname = ""
+
+# Sending Mail -------------------------------
+set use_from =yes
+set from=
+set sendmail="/usr/bin/msmtp -a dd3953"
+set sendmail_wait = 0

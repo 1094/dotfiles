@@ -1,0 +1,21 @@
+[options]
+scroll_on_output = false
+scroll_on_keystroke = true
+scrollback_lines = 20000
+scrollbar = off
+audible_bell = false
+allow_bold = false
+mouse_autohide = true
+dynamic_title = true
+urgent_on_bell = false
+search_wrap = true
+cursor_blink = on
+cursor_shape = block
+clickable_url = true
+icon_name = termite
+browser = qutebrowser
+font = FantasqueSansMono Nerd Font Regular 10
+font = Bekmuk Gulim Regular 10 	
+
+# [colors]
+## base16-shell magic
