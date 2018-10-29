@@ -22,6 +22,9 @@ call plug#end()
 """ filetype and syntax 
 filetype plugin on
 syntax on
+if has('autocmd')
+        filetype plugin indent on
+endif
 """ highlight
 """" spell 
 hi clear SpellBad
@@ -41,8 +44,6 @@ set linebreak
 set wrap
 set nolist
 set spelllang=en_us
-set tabstop=5
-set expandtab
 set showcmd
 set conceallevel=3
 set scrolloff=2
@@ -51,6 +52,10 @@ set incsearch
 set foldenable
 set foldmethod=manual
 set listchars=trail:•,tab:▸-,nbsp:+
+set autoindent
+set smartindent
+set smarttab
+set expandtab
 """ maps
 """" fold toggle
 inoremap ff <C-O>za
@@ -68,6 +73,7 @@ noremap 0 g0
 noremap $ g$
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :wincmd w<CR>
+noremap <F12> :! clear; python %<CR>
 """" map
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
@@ -132,7 +138,7 @@ function! SetBatteryLevel(timer_id)
 	endif
 	call timer_start(30000, 'SetBatteryLevel')
 endfunction
-"""""" source
+" source
 " https://michelerullo.wordpress.com/2018/02/16/hot-to-show-time-and-battery-status-on-vim-8-statusline/
 """ Plugins
 """" airline
@@ -196,8 +202,11 @@ cabbrev noshow StopInstantRst<CR>
 let g:instant_rst_browser = 'qutebrowser'
 """" ale
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = 'E-'
-let g:ale_sign_warning = 'W-'
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '<<'
+" ~/.vim/plugged/ale/autoload/ale/highlight.vim >> add ``highlight clear SignColumn``  to the very end
+noremap <F1> :ALEDisable<CR> 
+noremap <F2> :ALEEnable<CR>
 """ auto commands
 """" hello vim
 augroup hello_vim

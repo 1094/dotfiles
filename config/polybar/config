@@ -156,7 +156,8 @@ type = internal/network
 interface = wlp3s0b1
 interval = 2
 ;;;;;;;;;;;;;;;;;;;;;;
-label-connected = 
+format-connected = <label-connected>
+label-connected = %signal% 
 label-connected-foreground = ${colors.green}
 ;;;;;;;;;;;;;;;;;;;;;;;
 label-disconnected = 

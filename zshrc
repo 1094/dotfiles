@@ -5,6 +5,7 @@ export EDITOR=vim
 export VISUAL=vim
 export TERMINAL=termite
 export PRINTER=Canon
+export USB=/run/media/sir
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/txt:$PATH
@@ -17,7 +18,6 @@ export FZF_DEFAULT_COMMAND='fd'
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zalias
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 ### History
 HISTFILE=$HOME/.zhistory
 HISTSIZE=2000
