@@ -1,0 +1,148 @@
+# i3 config 
+# remove gaps and compton
+## Mod4 = Super | Mod1 = Alt_L | Input = Alt_R
+set $mod Mod4
+set $alt Mod1
+
+### start up programs and always run
+exec_always --no-startup-id ~/.config/polybar/launch
+exec --no-startup-id ~/.config/autostart.sh # move this to .config/openbox/
+
+### program and launcher shortcut
+bindsym $mod+r exec gmrun # try dmenu again?
+bindsym $mod+Return exec termite 
+bindsym $mod+Shift+Return exec lxterminal
+# desktop
+# bindsym $mod+KP_Enter exec termite
+# bindsym $mod+Shift+d exec dmenu_run
+bindsym $mod+w kill
+
+### screenshots with scrot 
+### xorg-xev for keycodes
+bindsym $mod+1 --release exec --no-startup-id scrot -u '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "window d(^ ^o)"
+bindsym $mod+2 --release exec --no-startup-id scrot '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "(o^ ^)b screen"
+
+### sound
+# keycode ___ amixer set Master 2%+
+# keycode ___ amixer set Master 2%-
+# keycode ___ amixer -D pulse sset Master mute
+
+### window title font
+font pango:Fantasque Sans Mono 0
+
+### windows: split, floating, parent/child 
+# custom window marks ?
+# https://i3wm.org/docs/layout-saving.html
+# https://www.reddit.com/r/i3wm/comments/808685/create_your_own_i3_layouts_that_are_actually/
+bindsym $alt+h split h; exec notify-send "nw-right"
+bindsym $alt+v split v; exec notify-send "nw-under"
+bindsym $alt+u split h; layout tabbed; exec notif-send "nw-behind"
+bindsym $alt+f fullscreen toggle
+
+### layout (stacked, tabbed, toggle split)
+bindsym $alt+s layout stacking
+bindsym $alt+w layout tabbed
+bindsym $alt+e layout toggle split
+
+### floating containers
+bindsym $mod+Shift+l floating toggle
+bindsym $mod+Tab focus mode_toggle
+
+### scratchpad
+bindsym $mod+Shift+p move scratchpad
+bindsym $mod+p scratchpad show
+# can I make this a retext or mousepad floating window?
+
+### move a floating window
+floating_modifier $mod
+
+### windows: focus, resize, moving 
+#### sanity
+focus_follows_mouse no
+#### change focus
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+#### move focused container
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+#### resize the container
+mode "resize" {
+bindsym Left resize shrink width 5 px or 5 ppt
+bindsym Down resize grow height 5 px or 5 ppt
+bindsym Up resize shrink height 5 px or 5 ppt
+bindsym Right resize grow width 5 px or 5 ppt
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+bindsym $alt+r mode "resize"
+
+
+### for_windows: border, enable floating
+for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] floating disable
+for_window [class="^.*"] move window to workspace current
+for_window [class="Oblogout"] fullscreen enable
+
+### workspace naming
+set $ws1 a
+set $ws2 s
+set $ws3 d
+set $ws4 f
+
+### workspace & container switching
+#### i go to workspace
+bindsym $mod+a workspace $ws1
+bindsym $mod+s workspace $ws2
+bindsym $mod+d workspace $ws3
+bindsym $mod+f workspace $ws4
+#### window goes to workspace
+bindsym $mod+Shift+a move container to workspace $ws1
+bindsym $mod+Shift+s move container to workspace $ws2
+bindsym $mod+Shift+d move container to workspace $ws3
+bindsym $mod+Shift+f move container to workspace $ws4
+#### toggle workspaces
+bindsym $alt+Tab workspace next
+
+### i3 reload, refresh
+bindsym $mod+Shift+c reload
+bindsym $mod+$alt+r restart
+
+### logout / restart / etc
+mode "bye" {
+bindsym R exec systemctl restart
+bindsym L exec i3-msg exit
+bindsym S exec systemctl shutdown now
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+bindsym $mod+$alt+0 mode "bye"
+
+### offical i3exit
+bindsym $mod+$alt+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+### window border colors (border, bg, fg, indic)
+# theme colors: base16 Ashes by Jannik Siebert
+client.focused          #81a2be #812abe #1c2023 #393f45
+client.focused_inactive #565e65 #565e65 #747c84 #393f45
+client.unfocused        #393f45 #393f45 #747c84 #393f45
+client.urgent           #565e65 #c7ae95 #f3f4f5 #c7ae95
+client.placeholder      #1c2023 #1c2023 #c7ccd1 #1c2023
+client.background       #f3f4f5
+
+### status bar
+# add %quality to conf
+bar {
+    status_command i3status -c $HOME/.config/i3/status.conf
+    font pango: TerminessTTF Nerd Font Mono 12
+    position top
+    separator_symbol " "
+    }
