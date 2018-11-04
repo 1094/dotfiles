@@ -11,10 +11,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'chusiang/vim-sdcv'
 Plug 'vim-scripts/fountain.vim'
-Plug 'reedes/vim-lexical'
 Plug 'Konfekt/vim-scratchpad'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'reedes/vim-wordy'
+Plug 'gu-fan/riv.vim'
+Plug 'gu-fan/InstantRst'
 call plug#end()
 """ filetype and syntax 
 filetype plugin on
@@ -29,7 +31,10 @@ set linebreak
 set wrap
 set nolist
 set spelllang=en_us
-set smarttab
+"set smarttab
+set tabstop=5
+set shiftwidth=0
+set expandtab
 set showcmd
 set conceallevel=3
 set scrolloff=2
@@ -39,16 +44,17 @@ set foldenable
 set foldmethod=manual
 set listchars=trail:•,tab:▸-,nbsp:+
 """" highlight 
-""""" spell hi clear SpellBad
-hi SpellBad ctermfg=DarkMagenta ctermbg=NONE cterm=underline
+""""" spell 
+hi clear SpellBad
+hi SpellBad ctermbg=NONE cterm=underline
 hi clear SpellCap
 hi SpellCap ctermfg=NONE ctermbg=NONE cterm=NONE
 hi clear Spelllocal
-hi Spelllocal ctermfg=DarkMagenta ctermbg=NONE cterm=NONE
+hi Spelllocal ctermbg=NONE cterm=NONE
 hi clear SpellRare
-hi SpellRare ctermfg=LightMagenta ctermbg=NONE cterm=NONE
-hi clear Visual
-hi Visual ctermfg=Black ctermbg=Cyan cterm=NONE
+hi SpellRare ctermbg=NONE cterm=NONE
+"hi clear Visual
+"hi Visual ctermfg=Black ctermbg=Cyan cterm=NONE
 """"" markdown brackets
 hi clear markdownError
 hi link markdownError normal
@@ -58,8 +64,8 @@ inoremap <Leader>f <C-O>za
 nnoremap <Leader>f za
 onoremap <Leader>f <C-C>za
 vnoremap <Leader>f zF
-nnoremap <Leader>C zM
-nnoremap <Leader>O zR
+nnoremap <Leader>cc zM
+nnoremap <Leader>oo zR
 """" noremap
 noremap j gj
 noremap k gk
@@ -69,11 +75,13 @@ noremap 0 g0
 noremap $ g$
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :wincmd w<CR>
+noremap <Leader>bn :bn<CR>
+noremap <Leader>bp :bp<CR>
+noremap <Leader>ww :wincmd w<CR>
+noremap <Leader>tn :tabnext<CR>
 """" map
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
-nmap sp <Plug>(ToggleScratchPad)
-nmap fzf :FZF<CR>
 """" cabbrev
 cabbrev smy set mouse=a<CR>
 cabbrev smn set mouse-=a<CR>
@@ -82,7 +90,6 @@ cabbrev vm e ~/.vim/more.vim<CR>
 cabbrev vb e ~/.vim/brev.vim<CR>
 cabbrev vz e ~/.zshrc<CR>
 cabbrev v3 e ~/.config/i3/config<CR>
-cabbrev Q q!all
 cabbrev cc close<CR>
 cabbrev def call SearchWord()<CR>
 cabbrev num set number!<CR>
@@ -117,13 +124,19 @@ set updatetime=100
 function HashtagFolds()
 	:set fdm=expr
 	:set fdl=0
-	:set fde=getline(v\:lnum)=~'^#'?'>'.(matchend(getline(v\:lnum),'#*'))\:'='
+	:set fde=getline(v\:lnum)=~'^#'?'>'.(matchend(getline(v\:lnum),'#*')-1)\:'='
 endfunction
 function EqualFolds()
 	:set fdm=expr
 	:set fdl=0
-	:set fde=getline(v\:lnum)=~'^='?'>'.(matchend(getline(v\:lnum),'=*'))\:'='
+	:set fde=getline(v\:lnum)=~'^='?'>'.(matchend(getline(v\:lnum),'=*')-1)\:'='
 endfunction
+function ConfigFolds()
+	:set fdm=expr
+	:set fdl=0
+	:set fde=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##*')-2)\:'='
+endfunction
+
 """" Mike's Battery
 let g:battery_level = ''
 function! SetBatteryLevel(timer_id)
@@ -178,19 +191,29 @@ let g:airline#extensions#clock#update = 6000
 function! AirlineInit()
 	let g:airline_section_z = airline#section#create(['clock', g:airline_symbols.space, g:airline_section_z])
 endfunction
-"""" vim-lexical
-let g:lexical#spell = 0
-let g:lexical#spell_key = '<leader>s'
-let g:lexical#thesaurus_key = '<leader>w'
 """" scratchpad
-let g:scratchpad_ftype = 'markdown'
+let g:scratchpad_ftype = 'rst'
+nmap sp <Plug>(ToggleScratchPad)
+"""" FZF
+nmap fzf :FZF<CR>
+nmap find :Lines<CR>
+"""" wordy
+noremap <silent> <F2> :<C-u>NextWordy<CR>
+xnoremap <silent> <F2> :<C-u>NextWordy<CR>
+inoremap <silent> <F2> :<C-u>NextWordy<CR>
+nmap <silent> <F1> :Wordy off<CR>
+"""" rST Table Formatter
+nmap <Leader><Leader>C :call ReflowTable()<CR>
+"""" InstantRST
+cabbrev show InstantRst<CR>
+cabbrev noshow StopInstantRst<CR>
+let g:instant_rst_browser = 'qutebrowser'
 """ auto commands
 """" hello vim
 augroup hello_vim
 	au!
 	au VimEnter * call SetBatteryLevel(0)
 	au User AirlineAfterInit call AirlineInit()
-	au VimEnter * call lexical#init()
 	au BufEnter * if &filetype == """ | setlocal ft=markdown | endif
 augroup END
 """" remember_folds
@@ -210,12 +233,20 @@ augroup END
 augroup the_folds
 	au!
 	au FileType markdown setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
-	au FileType conf setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
+	au FileType conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
+	au FileType zsh setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 	au FileType text setlocal foldexpr=EqualFolds() | setlocal foldmethod=expr
 augroup END
 """" word_counter
 augroup word_counter
 	au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
-""""" vim:fdm=expr:fdl=0
-"""""" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
+"""" spell checker
+augroup spell_checker
+	au!
+	au FileType markdown,text,rst set spell
+augroup END
+""" sources
+:so ~/.vim/ftplugin/rst_tables.vim
+""" vim:fdm=expr:fdl=0
+"""" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
