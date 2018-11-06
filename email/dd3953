@@ -2,19 +2,20 @@
 set signature = ~/.mutt/dsig
 
 # Default inbox.
-set folder = "~/.mail/dd3953"
-set spoolfile = "~/.mail/dd3953/INBOX"
-set mbox = "~/.mail/dd3953/archive"
-set postponed = "~/.mail/dd3953/drafts"
-set record = "~/.mail/dd3953/sent"
+set folder = "~/.mail/gmail/"
+set spoolfile = "~/.mail/gmail/Inbox"
+set mbox = "~/.mail/gmail/[Gmail]/All Mail"
+set postponed = "~/.mail/[Gmail]/Drafts"
+set record = "~/.mail/gmail/[Gmail]/Sent Mail"
 
 # Sidebar Options --------------------------------------
 unmailboxes *
 set imap_user = "dd3953"
-mailboxes =INBOX =sent =star =chats =archive =worth
+mailboxes =Inbox =worth =[Gmail]/'All Mail' =[Gmail]/'Sent Mail' =[Gmail]/Starred =[Gmail]/Chats =[Gmail]/Trash
+
 
 # Compose View Options -------------------------------
-set realname = ""
+set realname = 
 
 # Sending Mail -------------------------------
 set use_from =yes

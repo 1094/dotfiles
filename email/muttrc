@@ -51,7 +51,8 @@ bind index <space>	collapse-thread
 bind attach <return>	view-mailcap
 
 # Sync email
-macro index 0 "<shell-escape>offlineimap<enter>"
+#macro index 0 "<shell-escape>offlineimap<enter>"
+macro index 0 "<shell-escape>mbsync -a<enter>"
 
 # Sidebar Patch --------------------------------------
 set sidebar_visible = no
@@ -119,23 +120,10 @@ set editor = "vim"
 # MACROs --------------------------------------------
 macro pager <f12> <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 # Switch Mailboxes 
-macro index,pager <9> '<sync-mailbox><enter-command>source ~/.mutt/bored<enter><change-folder>!<enter>'
-macro index,pager <8> '<sync-mailbox><enter-command>source ~/.mutt/dd3953<enter><change-folder>!<enter>'
-
-# notmuch
-macro index <F8> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<shell-escape>notmuch-mutt -r --prompt search<enter>\
-<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-"notmuch: search mail"
-
-macro index <F9> \
-"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
-<pipe-message>notmuch-mutt -r thread<enter>\
-<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
-<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
-"notmuch: reconstruct thread"
+macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.mutt/bored<enter><change-folder>!<enter>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/dd3953<enter><change-folder>!<enter>'
+macro index,pager H '<change-folder>=Inbox<enter>'
+macro index D '<save-message>=[Gmail]/Trash<enter>'
 
 # Accounts ------------------------------------------- 
 source "~/.mutt/dd3953"
