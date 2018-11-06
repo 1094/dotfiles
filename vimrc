@@ -22,9 +22,9 @@ call plug#end()
 filetype plugin on
 syntax on
 """ for the Markdown folding
-if has("autocmd")
-	filetype plugin indent on
-endif
+"if has("autocmd")
+"	filetype plugin indent on
+"endif
 """" set
 set mouse-=a
 set linebreak
@@ -86,8 +86,6 @@ map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
 cabbrev smy set mouse=a<CR>
 cabbrev smn set mouse-=a<CR>
 cabbrev vv e ~/.vimrc<CR>
-cabbrev vm e ~/.vim/more.vim<CR>
-cabbrev vb e ~/.vim/brev.vim<CR>
 cabbrev vz e ~/.zshrc<CR>
 cabbrev v3 e ~/.config/i3/config<CR>
 cabbrev cc close<CR>
@@ -228,6 +226,7 @@ augroup set_filetypes
 	au BufNew,BufRead,BufNewFile *.fountain set ft=fountain
 	au BufNew,BufRead,BufNewFile *.md set ft=markdown
 	au BufNew,BufRead,BufNewFile *.mkd set ft=markdown
+     au BufNew,BufRead,BufNewFile /tmp/*.txt set ft=rst 
 augroup END
 """" folding
 augroup the_folds
