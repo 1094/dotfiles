@@ -1,0 +1,17 @@
+# panel
+tint2 &
+numlockx &
+
+# monitor stuff
+feh --randomize --bg-scale /home/dia/media/img/walls &
+xautolock -time 30 -locker /home/dia/txt/setting/locker &
+xrandr --output LVDS --brightness .6
+
+# Onscreen system stats
+(sleep 2 && conky) &
+
+# File manager dameon mode
+(sleep 2 && dbus-launch thunar --daemon) &
+
+# other stuff
+(sleep 2 && unclutter) &
