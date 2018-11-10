@@ -6,7 +6,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 """ the Plugs
 call plug#begin('~/.vim/plugged')
-Plug 'Shougo/denite.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'chusiang/vim-sdcv'
@@ -21,19 +20,13 @@ call plug#end()
 """ filetype and syntax 
 filetype plugin on
 syntax on
-""" for the Markdown folding
-"if has("autocmd")
-"	filetype plugin indent on
-"endif
 """" set
 set mouse-=a
 set linebreak
 set wrap
 set nolist
 set spelllang=en_us
-"set smarttab
 set tabstop=5
-set shiftwidth=0
 set expandtab
 set showcmd
 set conceallevel=3
@@ -75,10 +68,6 @@ noremap 0 g0
 noremap $ g$
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :wincmd w<CR>
-noremap <Leader>bn :bn<CR>
-noremap <Leader>bp :bp<CR>
-noremap <Leader>ww :wincmd w<CR>
-noremap <Leader>tn :tabnext<CR>
 """" map
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
@@ -88,6 +77,8 @@ cabbrev smn set mouse-=a<CR>
 cabbrev vv e ~/.vimrc<CR>
 cabbrev vz e ~/.zshrc<CR>
 cabbrev v3 e ~/.config/i3/config<CR>
+cabbrev vq e ~/.config/qtile/config.py<CR>
+cabbrev va e ~/.zalias<CR>
 cabbrev cc close<CR>
 cabbrev def call SearchWord()<CR>
 cabbrev num set number!<CR>
@@ -134,7 +125,6 @@ function ConfigFolds()
 	:set fdl=0
 	:set fde=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##*')-2)\:'='
 endfunction
-
 """" Mike's Battery
 let g:battery_level = ''
 function! SetBatteryLevel(timer_id)
@@ -200,6 +190,11 @@ noremap <silent> <F2> :<C-u>NextWordy<CR>
 xnoremap <silent> <F2> :<C-u>NextWordy<CR>
 inoremap <silent> <F2> :<C-u>NextWordy<CR>
 nmap <silent> <F1> :Wordy off<CR>
+"""" Riv
+let g:riv_ignored_nmaps = "<Tab>,<S-Tab>"
+let g:riv_ignored_maps = "<Tab>,<S-Tab>"
+let g:riv_ignored_imaps = "<Tab>,<S-Tab>"
+let g:riv_ignored_vmaps = "<Tab>,<S-Tab>"
 """" rST Table Formatter
 nmap <Leader><Leader>C :call ReflowTable()<CR>
 """" InstantRST
@@ -233,6 +228,7 @@ augroup the_folds
 	au!
 	au FileType markdown setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
 	au FileType conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
+	au FileType muttrc setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 	au FileType zsh setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 	au FileType text setlocal foldexpr=EqualFolds() | setlocal foldmethod=expr
 augroup END
