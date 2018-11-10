@@ -1,0 +1,15 @@
+#!/bin/zsh
+# https://gist.github.com/etandel/fc784d844a9a6822a747
+
+# change as needed
+DEFAULT_IMGS="$HOME/media/img/walls/"
+
+if [[ -z $1 ]] ; then
+    img_dir=$DEFAULT_IMGS
+else
+    img_dir=$1
+fi;
+
+
+randfile=$(ls $img_dir | sort -R | head -n1)
+i3lock -e -f --color=000000 -i $img_dir/$randfile

@@ -1,0 +1,91 @@
+## My Alias File
+alias wta="cat $HOME/.zalias | grep"
+
+### vim
+alias v3="vim $HOME/.config/i3/config"
+alias vq="vim $HOME/.config/qtile/config.py"
+alias vt="vim $HOME/.config/termite/config"
+alias vp="vim $HOME/.config/polybar/config"
+alias vv="vim $HOME/.vimrc"
+alias vz="vim $HOME/.zshrc"
+alias va="vim $HOME/.zalias"
+alias vD="vimdiff"
+alias vP="vimpager"
+
+### refresh
+alias 0Z="source $HOME/.zshrc"
+alias 0F="fc-cache -fv"
+alias 0V="vim +PlugInstall +PlugClean +qall"
+
+### email
+alias mutt="mutt -F ~/.mutt/muttrc"
+alias isync="mbsync -a"
+
+### sdcv
+alias dic="$HOME/txt/s-sdcv"
+alias def="sdcv --color -u 'WordNet'"
+alias 정의="sdcv --color -u 'Korean-English Dic'"
+
+### ls grep tree
+alias ls="ls -F"
+alias lsh="ls -AF"
+alias lsp="ls -AFl"
+alias grep="grep --color=always"
+alias ts="tree -F"
+alias tsh="tree -Fd"
+alias lsl="tree -Fh"
+
+### pacman / yaourt
+alias pacman="pacman --color always"
+alias yaourt="yaourt --color"
+alias pac-delete="sudo pacman -Rnssu"
+
+### terminal
+alias ee="exit"
+alias :q="exit"
+
+### finder
+alias mkd="mkdir -p"
+alias mv="mv -uv"
+alias rmd="rm -irf"
+alias cp="cp -irv"
+alias zip="zip -r -db"
+alias zh-find="fd -H"
+alias find="fd" 
+alias ds="df -h && du -sh *"
+
+### arch-wiki-manpages
+alias aw="awman"
+alias aws="awman -d -k"
+alias awu="awman-update"
+
+# rclone
+alias rsync="rclone -v sync"
+alias rcopy="rclone -v copy"
+
+### youtube-dl
+alias ytm="youtube-dl --extract-audio --audio-format mp3 --output '$HOME/media/%(title)s.%(ext)s'"
+alias ytv="youtube-dl --output '$HOME/media/%(title)s.%(ext)s'"
+
+### system
+alias hold="systemctl suspend"
+alias i3-exit="i3-msg exit"
+
+### just one alias programs
+alias vol="alsamixer"
+alias rain="cmatrix -asb"
+alias feh="feh -."
+alias mu="mupdf"
+alias f3="fanficfare -p -o is_adult=true"
+alias b16s="base16-shell-preview"
+alias mp3g="mp3gain -k -r"
+alias bg-new="feh --randomize --bg-scale media/img/walls/*"
+alias print="lpr -o fit-to-page -o outputorder=reverse"
+
+### desktop only
+#alias bright="xrandr --output LVDS --brightness"
+
+### laptop only
+alias wr="sudo systemctl restart NetworkManager.service"
+alias wl="nmcli d wifi list"
+alias fn="$HOME/txt/setting/fnmode"
