@@ -1,0 +1,90 @@
+# ====== SUDO ======
+# search
+alias sfind="$HOME/txt/nav/root-find"
+# function keys
+alias fn="$HOME/txt/setting/fnmode"
+# keyboard backlight
+alias kb="$HOME/txt/setting/kbacklight"
+# mounting /dev/sdc
+alias y-mnt="$HOME/txt/setting/sdc-mount"
+alias n-mnt="$HOME/txt/setting/usb-umount"
+# iMac brightness
+alias bright="xrandr --output LVDS --brightness"
+
+# VIM 
+alias dv="$HOME/txt/setting/daily"
+alias gv="vim -c :Goyo"
+# DOTFILES
+alias v3="vim $HOME/.config/i3/config"
+alias vt="vim $HOME/.config/termite/config"
+alias vp="vim $HOME/.config/polybar/config"
+# DOTFILES Grouping
+alias vv="vim $HOME/.vimrc"
+alias vz="vim $HOME/.zshrc"
+alias va="vim $HOME/.zsh/alias"
+alias vq="vim $HOME/.config/qtile/config.py"
+# NOTMUCH
+alias notmuch-show="notmuch show --entire-thread=true --format=text"
+alias esync="offlineimap -q"
+# MUTT
+alias mutt="mutt -F ~/.mutt/muttrc"
+# OTHER
+alias ml="/usr/local/bin/mypager"
+alias def="$HOME/txt/s-sdcv"
+# LISTING
+alias ls="ls -F"
+alias lsh="ls -AF"
+alias lsp="ls -AFl"
+alias grep="grep --color=always"
+alias ts="tree -F"
+alias tsh="tree -Fd"
+alias lsl="tree -Fh"
+# NAV-ish
+alias ee="exit"
+alias nn="termite &!"
+alias rd="rm -rf"
+alias mkd="mkdir -p"
+alias logout="i3-msg exit"
+# WIFI
+alias wl="nmcli d wifi list"
+# REFRESH
+alias 0Z="source $HOME/.zshrc"
+alias 0F="fc-cache -fv"
+alias 0V="vim +PlugInstall +PlugClean +qall"
+alias 0X="xrdb -load $HOME/.Xresources"
+# RCLONE & CP
+alias rsync="rclone -v sync"
+alias rcopy="rclone -v copy"
+alias cp="cp -irv"
+alias zip="zip -r -db"
+# YOUTUBE-DL
+alias ytm="youtube-dl --extract-audio --audio-format mp3 --output '$HOME/shat/dls/%(title)s.%(ext)s'"
+alias ytv="youtube-dl --output '$HOME/shat/vids/%(title)s.%(ext)s'"
+# OTHER 
+alias vol="alsamixer"
+# pacman/aur
+alias pmS="yaourt --color"
+alias pmI="sudo pacman -S"
+alias pmA="yaourt -S"
+alias pmR="sudo pacman -Rnssu"
+alias pmQ="pacman --color always -Q"
+alias wr="sudo systemctl restart NetworkManager.service"
+
+# ECHO'd
+alias rain="cmatrix -asb"
+alias feh="feh -."
+alias aw="awman"
+alias aws="awman -d -k"
+alias awu="awman-update"
+alias mu="mupdf"
+alias f3="fanficfare -p -o is_adult=true"
+alias b16="base16-manager"
+alias mcat="ansimd"
+alias mp3g="mp3gain -k -r"
+alias new-wall="feh --randomize --bg-scale media/img/walls/*"
+alias mv="mv -uv"
+alias rmd="rm -irf"
+alias print="lpr -o fit-to-page -o outputorder=reverse"
+alias tv="cd /run/media/sir/pny/movies/"
+alias wta="cat $HOME/.zsh/alias | grep"
+alias rm="rm -i"

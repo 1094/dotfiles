@@ -1,0 +1,16 @@
+export EDITOR=vim
+export TERMINAL=termite
+export BROWSER=qutebrowser
+export PRINTER=Canon
+# Gtk themes 
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# sanity
+shopt -s autocd
+
+## use zsh alias
+if [ -f ~/.zsh/alias ]; then
+	source ~/.zsh/alias
+fi
+
+## prompt
+export PS1='\[`[ $? = 0 ] && X=2 || X=1; tput setaf $X`\]\h\[`tput sgr0`\]:$PWD\n\$ '
