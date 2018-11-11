@@ -1,4 +1,4 @@
-SHARED CONFIG
+# SHARED CONFIG
 ### Paths ----------------------------------------------
 set alias_file       = ~/.mutt/alias
 set header_cache     = ~/.mutt/cache/headers

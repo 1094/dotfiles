@@ -50,8 +50,7 @@ alias mv="mv -uv"
 alias rmd="rm -irf"
 alias cp="cp -irv"
 alias zip="zip -r -db"
-alias zh-find="fd -H"
-alias find="fd" 
+function zf() { fd -H $1 / }
 alias ds="df -h && du -sh *"
 
 ### arch-wiki-manpages
@@ -80,7 +79,7 @@ alias f3="fanficfare -p -o is_adult=true"
 alias b16s="base16-shell-preview"
 alias mp3g="mp3gain -k -r"
 alias bg-new="feh --randomize --bg-scale media/img/walls/*"
-alias print="lpr -o fit-to-page -o outputorder=reverse"
+#alias print="lpr -o fit-to-page -o outputorder=reverse"
 
 ### desktop only
 #alias bright="xrandr --output LVDS --brightness"
