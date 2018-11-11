@@ -2,7 +2,7 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 """ the Plugs
 call plug#begin('~/.vim/plugged')
@@ -13,14 +13,29 @@ Plug 'vim-scripts/fountain.vim'
 Plug 'Konfekt/vim-scratchpad'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'reedes/vim-wordy'
 Plug 'gu-fan/riv.vim'
 Plug 'gu-fan/InstantRst'
+Plug 'metakirby5/codi.vim'
+Plug 'skywind3000/asyncrun'
+Plug 'w0rp/ale'
 call plug#end()
 """ filetype and syntax 
 filetype plugin on
 syntax on
-"""" set
+""" highlight
+"""" spell 
+hi clear SpellBad
+hi SpellBad ctermbg=NONE cterm=underline
+hi clear SpellCap
+hi SpellCap ctermfg=NONE ctermbg=NONE cterm=NONE
+hi clear Spelllocal
+hi Spelllocal ctermbg=NONE cterm=NONE
+hi clear SpellRare
+hi SpellRare ctermbg=NONE cterm=NONE
+"""" markdown brackets
+hi clear markdownError
+hi link markdownError normal
+""" set
 set mouse-=a
 set linebreak
 set wrap
@@ -36,29 +51,14 @@ set incsearch
 set foldenable
 set foldmethod=manual
 set listchars=trail:•,tab:▸-,nbsp:+
-"""" highlight 
-""""" spell 
-hi clear SpellBad
-hi SpellBad ctermbg=NONE cterm=underline
-hi clear SpellCap
-hi SpellCap ctermfg=NONE ctermbg=NONE cterm=NONE
-hi clear Spelllocal
-hi Spelllocal ctermbg=NONE cterm=NONE
-hi clear SpellRare
-hi SpellRare ctermbg=NONE cterm=NONE
-"hi clear Visual
-"hi Visual ctermfg=Black ctermbg=Cyan cterm=NONE
-""""" markdown brackets
-hi clear markdownError
-hi link markdownError normal
 """ maps
 """" fold toggle
-inoremap <Leader>f <C-O>za
-nnoremap <Leader>f za
-onoremap <Leader>f <C-C>za
-vnoremap <Leader>f zF
-nnoremap <Leader>cc zM
-nnoremap <Leader>oo zR
+inoremap ff <C-O>za
+nnoremap ff za
+onoremap ff <C-C>za
+vnoremap ff zF
+nnoremap fC zM
+nnoremap fO zR
 """" noremap
 noremap j gj
 noremap k gk
@@ -94,7 +94,7 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 """ Functions
 """" word count
-let g:word_count="..."
+let g:word_count='...'
 function WordCount()
 	return g:word_count
 endfunction
@@ -109,27 +109,24 @@ function UpdateWordCount()
 endfunction
 set updatetime=100
 """" folding
-""""" thank you godlygeek
+""""" markdown
+"thank you godlygeek
 function HashtagFolds()
-	:set fdm=expr
-	:set fdl=0
-	:set fde=getline(v\:lnum)=~'^#'?'>'.(matchend(getline(v\:lnum),'#*')-1)\:'='
+	:set foldmethod=expr
+	:set foldlevel=0
+	:set foldexpr=getline(v\:lnum)=~'^#'?'>'.(matchend(getline(v\:lnum),'#*')-1)\:'='
 endfunction
-function EqualFolds()
-	:set fdm=expr
-	:set fdl=0
-	:set fde=getline(v\:lnum)=~'^='?'>'.(matchend(getline(v\:lnum),'=*')-1)\:'='
-endfunction
+""""" config
 function ConfigFolds()
-	:set fdm=expr
-	:set fdl=0
-	:set fde=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##*')-2)\:'='
+	:set foldmethod=expr
+	:set foldlevel=0
+	:set foldexpr=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##*')-2)\:'='
 endfunction
 """" Mike's Battery
 let g:battery_level = ''
 function! SetBatteryLevel(timer_id)
 	let l:battery_level = system('acpi | grep -oP "(\d+)%" | tr -d "\n"')
-	if (battery_level != '')
+	if (battery_level !=# '')
 		let g:battery_level = l:battery_level
 		redraw!
 	endif
@@ -140,6 +137,7 @@ endfunction
 """ Plugins
 """" airline
 """"" general stuff
+let g:ariline#extensions#enabled = 1
 let g:airline#extensions#whitespace#enable = 0
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -185,22 +183,21 @@ nmap sp <Plug>(ToggleScratchPad)
 """" FZF
 nmap fzf :FZF<CR>
 nmap find :Lines<CR>
-"""" wordy
-noremap <silent> <F2> :<C-u>NextWordy<CR>
-xnoremap <silent> <F2> :<C-u>NextWordy<CR>
-inoremap <silent> <F2> :<C-u>NextWordy<CR>
-nmap <silent> <F1> :Wordy off<CR>
 """" Riv
-let g:riv_ignored_nmaps = "<Tab>,<S-Tab>"
-let g:riv_ignored_maps = "<Tab>,<S-Tab>"
-let g:riv_ignored_imaps = "<Tab>,<S-Tab>"
-let g:riv_ignored_vmaps = "<Tab>,<S-Tab>"
+let g:riv_ignored_nmaps = '<Tab>,<S-Tab>'
+let g:riv_ignored_maps = '<Tab>,<S-Tab>'
+let g:riv_ignored_imaps = '<Tab>,<S-Tab>'
+let g:riv_ignored_vmaps = '<Tab>,<S-Tab>'
 """" rST Table Formatter
 nmap <Leader><Leader>C :call ReflowTable()<CR>
 """" InstantRST
 cabbrev show InstantRst<CR>
 cabbrev noshow StopInstantRst<CR>
 let g:instant_rst_browser = 'qutebrowser'
+"""" ale
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = 'E-'
+let g:ale_sign_warning = 'W-'
 """ auto commands
 """" hello vim
 augroup hello_vim
@@ -226,11 +223,8 @@ augroup END
 """" folding
 augroup the_folds
 	au!
-	au FileType markdown setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
-	au FileType conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
-	au FileType muttrc setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
-	au FileType zsh setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
-	au FileType text setlocal foldexpr=EqualFolds() | setlocal foldmethod=expr
+	au FileType markdown,text setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
+	au FileType zsh,muttrc,conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 augroup END
 """" word_counter
 augroup word_counter
@@ -243,5 +237,6 @@ augroup spell_checker
 augroup END
 """ sources
 :so ~/.vim/ftplugin/rst_tables.vim
+:so ~/.vim/ftplugin/javascript.vim
 """ vim:fdm=expr:fdl=0
 """" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
