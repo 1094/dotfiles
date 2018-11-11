@@ -45,7 +45,7 @@ alias ee="exit"
 alias :q="exit"
 
 ### finder
-alias mkd="mkdir -p"
+alias mkdir="mkdir -p"
 alias mv="mv -uv"
 alias rmd="rm -irf"
 alias cp="cp -irv"
