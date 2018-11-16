@@ -1,6 +1,0 @@
-#!/bin/bash
-set -e
-sudo -s <<EOF
-echo $1 > /sys/class/leds/smc::kbd_backlight/brightness
-echo "Keyboard backlight set to $1."
-EOF
