@@ -3,39 +3,39 @@
 set $mod Mod4
 set $alt Mod1
 
-### start up programs and always run
-exec_always --no-startup-id ~/.config/polybar/launch
+### start up
 exec --no-startup-id ~/.config/autostart.sh
+exec --no-startup-id ~/.config/polybar/launch
 
 ### program and launcher shortcut
-bindsym $mod+d exec gmrun
-bindsym $mod+Return exec termite 
+bindsym $mod+d exec dmenu_run -b -fn 'TerminessTTF Nerd Font Mono-10' 
+bindsym $mod+Return exec termite
+bindsym $mod+KP_Enter exec termite
 bindsym $mod+Shift+Return exec lxterminal
-# desktop
-# bindsym $mod+KP_Enter exec termite
-# bindsym $mod+Shift+d exec dmenu_run
-bindsym $mod+Shift+q kill
+bindsym $mod+w kill
+
+### sound
+bind 95 exec amixer set Master 2%-
+bind 96 exec amixer set Master 2%+
+bind 76 exec amixer set Master toggle
 
 ### screenshots with scrot 
 bindsym $mod+F3 --release exec --no-startup-id scrot -u '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "window d(^ ^o)"
-bindsym $mod+F4 --release exec --no-startup-id scrot '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "(o^ ^)b screen"
+bindsym $mod+Shift+F3 --release exec --no-startup-id scrot '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "(o^ ^)b screen"
 
 ### window title font
-font pango:Fantasque Sans Mono 0
+font pango:TerminessTTF Nerd Font Mono 0
 
 ### windows: split, floating, parent/child 
-bindsym $mod+h split h; exec notify-send "nw-right"
-bindsym $mod+v split v; exec notify-send "nw-under"
-bindsym $mod+u split h; layout tabbed; exec notif-send "nw-behind"
-bindsym $mod+f fullscreen toggle
-
-### layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $alt+h split h
+bindsym $alt+v split v
+bindsym $mod+u split h; layout tabbed
+bindsym $alt+f fullscreen toggle
+bindsym $alt+t layout tabbed
+bindsym $alt+Shift+t layout toggle stacking
 
 ### floating containers
-bindsym $mod+Shift+l floating toggle
+bindsym $alt+Shift+f floating toggle
 bindsym $mod+Tab focus mode_toggle
 
 ### scratchpad
@@ -48,50 +48,39 @@ floating_modifier $mod
 ### windows: focus, resize, moving 
 #### sanity
 focus_follows_mouse no
-#### change focus
+#### change focus vim
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-bindsym $mod+Left focus left
+bindsym $mod+h focus left
+#### change focus arrows
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+bindsym $mod+Left focus left
 #### move focused container
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-#### resize the container
-mode "resize" {
-bindsym Left resize shrink width 5 px or 5 ppt
-bindsym Down resize grow height 5 px or 5 ppt
-bindsym Up resize shrink height 5 px or 5 ppt
-bindsym Right resize grow width 5 px or 5 ppt
-bindsym Return mode "default"
-bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
-
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 ### for_windows: border, enable floating
-for_window [class="^.*"] border pixel 4
-for_window [class="Lxappearance"] floating disable
-for_window [class="Gtk*"] floating disable
-for_window [class="Oblogout"] fullscreen enable
+for_window [class="^.*"] border pixel 2 
+for_window [class="^.*"] floating disable
 
 ### workspace naming
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
+set $ws1 일
+set $ws2 이
+set $ws3 삼
+set $ws4 사
 
 ### workspace & container switching
-#### i go to workspace
+#### i go
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
-#### window goes to workspace
+#### window goes
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -107,16 +96,11 @@ for_window [class="^google$"] move window to workspace current
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-### logout / restart / etc
-bindsym $mod+Shift+0 exec oblogout
-
 ### offical i3exit
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
-### i3-gaps
-gaps inner 10
-gaps outer 5
-
+# make all colors the same but for the focused active and the placeholder (should be lighter)
+# https://thomashunter.name/i3-configurator/
 ### window border colors (border, bg, fg, indic)
 # theme colors: base16 Ashes by Jannik Siebert
 client.focused          #81a2be #812abe #1c2023 #393f45
@@ -126,48 +110,54 @@ client.urgent           #565e65 #c7ae95 #f3f4f5 #c7ae95
 client.placeholder      #1c2023 #1c2023 #c7ccd1 #1c2023
 client.background       #f3f4f5
 
-### status bar
-exec_always --no-startup-id ~/.config/polybar/launch
-# bar {
-#	status_command i3status -c $HOME/.config/i3/status.conf
-#	font pango: Monofur Nerd Font Book 11
-#	position top
-#	separator_symbol " "
-#	}
+#### mode_resize
+bindsym $mod+r mode "resize"
+mode "resize" {
+bindsym Left resize shrink width 5 px or 5 ppt
+bindsym Down resize grow height 5 px or 5 ppt
+bindsym Up resize shrink height 5 px or 5 ppt
+bindsym Right resize grow width 5 px or 5 ppt
 
-### Manjaro Gap Mode (a bit tweaked)
-set $mode_gaps Gaps: [o]outer [i]nner
-set $mode_gaps_outer [current] +|-|0 [all] shift & +|-|0
-set $mode_gaps_inner [current] +|-|0 [all] shift & +|-|0
-
-bindsym $mod+Shift+w mode "$mode_gaps"
-mode "$mode_gaps" {
-        bindsym o      mode "$mode_gaps_outer"
-        bindsym i      mode "$mode_gaps_inner"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }
-mode "$mode_gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
 
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
+### mode_apps
+set $mode_apps 애플리케이션: [q]브라우저 - [v]편집기 - s[n]cli - [m]전자우편 - [r]텍스트 편집기
+set $mode_apps_qute 브라우저: [d]efault - [v]편집기 - [r]mf - [p]ython - [k]한국의
+bindsym $alt+0 mode "$mode_apps"
+mode "$mode_apps" {
+bindsym q mode "$mode_apps_qute"
+bindsym v exec termite -e vim; mode "default"
+bindsym n exec termite -e sncli; mode "default"
+bindsym m exec termite -e mutt; mode "default"
+bindsym r exec retext; mode "default"
 
-        bindsym Return mode "$mode_gaps"
-        bindsym Escape mode "default"
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }
-mode "$mode_gaps_outer" {
-        bindsym plus  gaps outer current plus 5
-        bindsym minus gaps outer current minus 5
-        bindsym 0     gaps outer current set 0
+# mode_apps_qute
+mode "$mode_apps_qute" {
+bindsym d exec qutebrowser ':session-load default'; mode "default"
+bindsym v exec qutebrowser ':session-load vim'; mode "default"
+bindsym q exec qutebrowser ':session-load rmf'; mode "default"
+bindsym p exec qutebrowser ':session-load python'; mode "default"
+bindsym k exec qutebrowser ':session-load korean'; mode "default"
 
-        bindsym Shift+plus  gaps outer all plus 5
-        bindsym Shift+minus gaps outer all minus 5
-        bindsym Shift+0     gaps outer all set 0
+bindsym Escape mode "$mode_apps"
+bindsym Return mode "default"
+}
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+### mode_exit
+set $mode_exit 끝내다: [l]로그오프하다 - [k]잠금 화면 - [r]다시 시작하다 - [s]종료
+bindsym $mod+Shift+q mode "$mode_exit"
+
+mode "$mode_exit" {
+bindsym l exec i3-msg exit
+bindsym k exec $HOME/txt/setting/locker; mode "default"
+bindsym r exec systemctl reboot
+bindsym s exec systemctl shutdown now
+
+bindsym Escape mode "default"
+bindsym Return mode "default"
 }

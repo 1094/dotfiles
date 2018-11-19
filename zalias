@@ -1,39 +1,37 @@
 ## My Alias File
-alias wta="cat $HOME/.zalias | grep"
+alias wta="cat /home/sir/.zalias | grep"
 
 ### vim
-alias v3="vim $HOME/.config/i3/config"
-alias vq="vim $HOME/.config/qtile/config.py"
-alias vt="vim $HOME/.config/termite/config"
-alias vp="vim $HOME/.config/polybar/config"
-alias vv="vim $HOME/.vimrc"
-alias vz="vim $HOME/.zshrc"
-alias va="vim $HOME/.zalias"
+alias v3="vim /home/sir/.config/i3/config"
+alias vq="vim /home/sir/.config/qtile/config.py"
+alias vt="vim /home/sir/.config/termite/config"
+alias vp="vim /home/sir/.config/polybar/config"
+alias vv="vim /home/sir/.vimrc"
+alias vz="vim /home/sir/.zshrc"
+alias va="vim /home/sir/.zalias"
 alias vD="vimdiff"
 alias vP="vimpager"
 
 ### refresh
-alias 0Z="source $HOME/.zshrc"
+alias 0Z="source /home/sir/.zshrc"
 alias 0F="fc-cache -fv"
 alias 0V="vim +PlugInstall +PlugClean +qall"
 
 ### email
 alias mutt="mutt -F ~/.mutt/muttrc"
-alias isync="mbsync -a"
+alias dsync="mbsync -a"
+alias bsync="mbsync -a -c ~/.mbs-b"
 
 ### sdcv
-alias dic="$HOME/txt/s-sdcv"
 alias def="sdcv --color -u 'WordNet'"
 alias 정의="sdcv --color -u 'Korean-English Dic'"
 
-### ls grep tree
+### ls grep
 alias ls="ls -F"
 alias lsh="ls -AF"
-alias lsp="ls -AFl"
+alias lsl="ls -Fl"
+alias lshl="ls -AFl"
 alias grep="grep --color=always"
-alias ts="tree -F"
-alias tsh="tree -Fd"
-alias lsl="tree -Fh"
 
 ### pacman / yaourt
 alias pacman="pacman --color always"
@@ -41,8 +39,7 @@ alias yaourt="yaourt --color"
 alias pac-delete="sudo pacman -Rnssu"
 
 ### terminal
-alias ee="exit"
-alias :q="exit"
+alias 0="exit"
 
 ### finder
 alias mkdir="mkdir -p"
@@ -50,7 +47,13 @@ alias mv="mv -uv"
 alias rmd="rm -irf"
 alias cp="cp -irv"
 alias zip="zip -r -db"
-function zf() { fd -H $1 / }
+
+### system search
+function zf {
+       "fd -H $1 /"
+        }
+
+### size
 alias ds="df -h && du -sh *"
 
 ### arch-wiki-manpages
@@ -58,13 +61,13 @@ alias aw="awman"
 alias aws="awman -d -k"
 alias awu="awman-update"
 
-# rclone
+### rclone
 alias rsync="rclone -v sync"
 alias rcopy="rclone -v copy"
 
 ### youtube-dl
-alias ytm="youtube-dl --extract-audio --audio-format mp3 --output '$HOME/media/%(title)s.%(ext)s'"
-alias ytv="youtube-dl --output '$HOME/media/%(title)s.%(ext)s'"
+alias ytm="youtube-dl --extract-audio --audio-format mp3 --output '/home/sir/media/%(title)s.%(ext)s'"
+alias ytv="youtube-dl --output '/home/sir/media/%(title)s.%(ext)s'"
 
 ### system
 alias hold="systemctl suspend"
@@ -87,4 +90,3 @@ alias bg-new="feh --randomize --bg-scale media/img/walls/*"
 ### laptop only
 alias wr="sudo systemctl restart NetworkManager.service"
 alias wl="nmcli d wifi list"
-alias fn="$HOME/txt/setting/fnmode"
