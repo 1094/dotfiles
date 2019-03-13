@@ -3,9 +3,15 @@
 
 config_version: 2
 settings:
+  aliases:
+    global:
+      wq: quit --save
   bindings.commands:
     global:
       normal:
+        ',l': set-cmd-text --space :session-load
+        ',s': set-cmd-text --space :session-save --only-active-window
+        ',t': set-cmd-text --space :tab-take
         .: stop
         '00': download-clear
         <Ctrl+d>: close
@@ -15,6 +21,7 @@ settings:
         P: tab-pin
         S: '":session-save --only-active-window"'
         q: null
+        w: session-save --only-active-window
   colors.statusbar.caret.fg:
     global: black
   colors.statusbar.progress.bg:
@@ -29,28 +36,32 @@ settings:
     global:
     - vim
     - '{file}'
+  fonts.completion.category:
+    global: bold 10pt TermniessTTF Nerd Font Mono
   fonts.completion.entry:
-    global: Monofur Nerd Font Book
+    global: TerminessTTF Nerd Font Mono
+  fonts.debug_console:
+    global: 10pt TerminessTTF Nerd Font Mono
   fonts.monospace:
-    global: Terminess
+    global: BPtypewrite
   fonts.prompts:
-    global: monospace
+    global: 10pt TerminessTTF Nerd Font Mono
   fonts.statusbar:
-    global: monospace
+    global: 10pt TerminessTTF Nerd Font Mono
   fonts.tabs:
-    global: 9pt.monospace
+    global: 10pt TerminessTTF Nerd Font Mono
   fonts.web.family.cursive:
-    global: monospace
+    global: BPtypewrite
   fonts.web.family.fantasy:
-    global: monospace
+    global: BPtypewrite
   fonts.web.family.fixed:
-    global: monospace
+    global: TerminessTTF Nerd Font Mono
   fonts.web.family.sans_serif:
-    global: monospace
+    global: BPtypewrite
   fonts.web.family.serif:
-    global: monospace
+    global: BPtypewrite
   fonts.web.family.standard:
-    global: monospace
+    global: BPtypewrite
   fonts.web.size.default:
     global: 15
   fonts.web.size.default_fixed:

@@ -1,0 +1,2 @@
+#!/bin/bash
+xautolock -time 20 -locker /usr/local/bin/locker

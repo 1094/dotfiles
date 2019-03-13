@@ -4,6 +4,7 @@ export ZSH=$HOME/.oh-my-zsh
 export EDITOR=vim
 export VISUAL=vim
 export TERMINAL=termite
+export BROWSER=qutebrowser
 export PRINTER=Canon
 export USB=/run/media/sir
 export GOPATH=$HOME/.go
@@ -58,15 +59,10 @@ autoload -Uz promptinit && promptinit
 prompt adam2
 
 #### My Prompt 
-# case "$TERM" in
-#	xterm*)
-#		PROMPT="%~ $ "
-#		;;
-#	*)
-#		PROMPT="%~ [ "
-#		RPROMPT="] %t | $(bat)%"
-#		;;
-# esac
+if [ $TERM = "yaft-256color" ]; then
+	PROMPT="%~ [ "
+	RPROMPT="] %t | $(bat)%"
+fi
 
 ### base16-shell
 [ -n "$PS1" ] && \

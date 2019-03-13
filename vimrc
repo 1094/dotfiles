@@ -10,21 +10,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'chusiang/vim-sdcv'
 Plug 'vim-scripts/fountain.vim'
-Plug 'Konfekt/vim-scratchpad'
 Plug '/usr/bin/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'gu-fan/riv.vim'
-Plug 'gu-fan/InstantRst'
-Plug 'metakirby5/codi.vim'
-Plug 'skywind3000/asyncrun'
 Plug 'w0rp/ale'
+Plug 'lilydjwg/fcitx.vim'
+Plug 'mattn/webapi-vim'
+Plug 'mattn/gist-vim'
+Plug 'khorser/vim-rst-ftplugin'
 call plug#end()
 """ filetype and syntax 
 filetype plugin on
 syntax on
-if has('autocmd')
-        filetype plugin indent on
-endif
+filetype indent off
 """ highlight
 """" spell 
 hi clear SpellBad
@@ -44,6 +41,7 @@ set linebreak
 set wrap
 set nolist
 set spelllang=en_us
+set spelllang+=cjk
 set showcmd
 set conceallevel=3
 set scrolloff=2
@@ -52,19 +50,22 @@ set incsearch
 set foldenable
 set foldmethod=manual
 set listchars=trail:•,tab:▸-,nbsp:+
-set autoindent
-set smartindent
-set smarttab
-set expandtab
+set tabstop=5
+set softtabstop=5
 """ maps
 """" fold toggle
-inoremap ff <C-O>za
+noremap ff <C-O>za
 nnoremap ff za
 onoremap ff <C-C>za
 vnoremap ff zF
 nnoremap fC zM
 nnoremap fO zR
-"""" noremap
+
+"""" insert
+inoremap <Up> <C-O>gk
+inoremap <Down> <C-O>gj
+
+"""" normal
 noremap j gj
 noremap k gk
 noremap gk k
@@ -74,9 +75,13 @@ noremap $ g$
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :wincmd w<CR>
 noremap <F12> :! clear; python %<CR>
+
 """" map
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
+map ,l :lopen<CR>
+map z- call SearchWord()<CR>
+
 """" cabbrev
 cabbrev smy set mouse=a<CR>
 cabbrev smn set mouse-=a<CR>
@@ -90,11 +95,15 @@ cabbrev def call SearchWord()<CR>
 cabbrev num set number!<CR>
 cabbrev rnum set relativenumber!<CR>
 cabbrev spell set spell!<CR>
+
 """" iabbrev
 iabbrev Mirnada Miranda
 iabbrev ANdy Andy
 iabbrev adn and
 iabbrev tmw tomorrow
+iabbrev NIgel Nigel
+iabbrev wtag! <a href="/tagged/"></a><br/>
+
 """ netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
@@ -202,11 +211,12 @@ cabbrev noshow StopInstantRst<CR>
 let g:instant_rst_browser = 'qutebrowser'
 """" ale
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '<<'
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
+let g:ale_enabled = 0
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " ~/.vim/plugged/ale/autoload/ale/highlight.vim >> add ``highlight clear SignColumn``  to the very end
-noremap <F1> :ALEDisable<CR> 
-noremap <F2> :ALEEnable<CR>
+noremap <F2> :ALEToggle<CR>
 """ auto commands
 """" hello vim
 augroup hello_vim
@@ -221,7 +231,7 @@ augroup remember_folds
 	au BufWrite ?* mkview!
 	au BufEnter ?* silent loadview
 augroup END
-"""" set_filetypes
+"""" set file types
 augroup set_filetypes
 	au!
 	au BufNew,BufRead,BufNewFile *.fountain set ft=fountain
@@ -232,8 +242,9 @@ augroup END
 """" folding
 augroup the_folds
 	au!
-	au FileType markdown,text setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
-	au FileType zsh,muttrc,conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
+"	au FileType markdown,text setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
+	au FileType markdown setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
+	au FileType sh,zsh,muttrc,conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 augroup END
 """" word_counter
 augroup word_counter
@@ -244,8 +255,18 @@ augroup spell_checker
 	au!
 	au FileType markdown,text,rst set spell
 augroup END
-""" sources
-:so ~/.vim/ftplugin/rst_tables.vim
-:so ~/.vim/ftplugin/javascript.vim
+"""" set tabs and such
+au BufNewFile,BufRead *.js,*.html,*.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set fileformat=unix
+""" gist
+cabbrev gkf Gist 2dd7ed3a453bce8cf37f594bd70d97f2
 """ vim:fdm=expr:fdl=0
 """" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='

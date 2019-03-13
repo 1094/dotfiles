@@ -10,6 +10,7 @@ exec --no-startup-id ~/.config/polybar/launch
 ### program and launcher shortcut
 bindsym $mod+d exec dmenu_run -b -fn 'TerminessTTF Nerd Font Mono-10' 
 bindsym $mod+Return exec termite
+bindsym $Mod+BackSpace exec pcmanfm
 bindsym $mod+KP_Enter exec termite
 bindsym $mod+Shift+Return exec lxterminal
 bindsym $mod+w kill
@@ -27,8 +28,8 @@ bindsym $mod+Shift+F3 --release exec --no-startup-id scrot '%a_%b_%d_%S.png' -e 
 font pango:TerminessTTF Nerd Font Mono 0
 
 ### windows: split, floating, parent/child 
-bindsym $alt+h split h
-bindsym $alt+v split v
+bindsym $mod+b split h
+bindsym $mod+v split v
 bindsym $mod+u split h; layout tabbed
 bindsym $alt+f fullscreen toggle
 bindsym $alt+t layout tabbed
@@ -65,14 +66,14 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 ### for_windows: border, enable floating
-for_window [class="^.*"] border pixel 2 
-for_window [class="^.*"] floating disable
+for_window [class="^.*"] border pixel 1 
+#for_window [class="^.*"] floating disable
 
 ### workspace naming
-set $ws1 일
-set $ws2 이
-set $ws3 삼
-set $ws4 사
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
 
 ### workspace & container switching
 #### i go
@@ -124,7 +125,7 @@ bindsym Escape mode "default"
 
 ### mode_apps
 set $mode_apps 애플리케이션: [q]브라우저 - [v]편집기 - s[n]cli - [m]전자우편 - [r]텍스트 편집기
-set $mode_apps_qute 브라우저: [d]efault - [v]편집기 - [r]mf - [p]ython - [k]한국의
+set $mode_apps_qute 브라우저: [d], [v], [r], [p], [k], [t].
 bindsym $alt+0 mode "$mode_apps"
 mode "$mode_apps" {
 bindsym q mode "$mode_apps_qute"
@@ -138,11 +139,12 @@ bindsym Escape mode "default"
 }
 # mode_apps_qute
 mode "$mode_apps_qute" {
-bindsym d exec qutebrowser ':session-load default'; mode "default"
+bindsym d exec qutebrowser; mode "default"
 bindsym v exec qutebrowser ':session-load vim'; mode "default"
 bindsym q exec qutebrowser ':session-load rmf'; mode "default"
 bindsym p exec qutebrowser ':session-load python'; mode "default"
 bindsym k exec qutebrowser ':session-load korean'; mode "default"
+bindsym t exec qutebrowser ':session-load tlk'; mode "default"
 
 bindsym Escape mode "$mode_apps"
 bindsym Return mode "default"
@@ -154,10 +156,55 @@ bindsym $mod+Shift+q mode "$mode_exit"
 
 mode "$mode_exit" {
 bindsym l exec i3-msg exit
-bindsym k exec $HOME/txt/setting/locker; mode "default"
+bindsym k exec $HOME/words/txt/setting/locker; mode "default"
 bindsym r exec systemctl reboot
-bindsym s exec systemctl shutdown now
+bindsym s exec shutdown now
 
 bindsym Escape mode "default"
 bindsym Return mode "default"
+}
+
+### gaps
+#### base gaps
+gaps inner 15
+gaps outer 0
+#smart_gaps on
+#smart_borders on
+
+#### gap mode
+set $mode_gaps Gaps: [o]outer [i]nner
+set $mode_gaps_outer [current] +|-|0 [all] shift & +|-|0
+set $mode_gaps_inner [current] +|-|0 [all] shift & +|-|0
+
+bindsym $mod+Shift+w mode "$mode_gaps"
+mode "$mode_gaps" {
+bindsym o      mode "$mode_gaps_outer"
+bindsym i      mode "$mode_gaps_inner"
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+bindsym plus  gaps inner current plus 5
+bindsym minus gaps inner current minus 5
+bindsym 0     gaps inner current set 0
+bindsym Shift+plus  gaps inner all plus 5
+bindsym Shift+minus gaps inner all minus 5
+bindsym Shift+0     gaps inner all set 0
+
+bindsym Return mode "$mode_gaps"
+bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+bindsym plus  gaps outer current plus 5
+bindsym minus gaps outer current minus 5
+bindsym 0     gaps outer current set 0
+bindsym Shift+plus  gaps outer all plus 5
+bindsym Shift+minus gaps outer all minus 5
+bindsym Shift+0     gaps outer all set 0
+
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }

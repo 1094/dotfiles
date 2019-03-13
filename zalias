@@ -1,4 +1,4 @@
-## My Alias File
+# My Alias File
 alias wta="cat /home/sir/.zalias | grep"
 
 ### vim
@@ -34,12 +34,15 @@ alias lshl="ls -AFl"
 alias grep="grep --color=always"
 
 ### pacman / yaourt
-alias pacman="pacman --color always"
-alias yaourt="yaourt --color"
-alias pac-delete="sudo pacman -Rnssu"
+alias pac="pacman --color always"
+alias pac-d="_ pacman -Rnssu"
+alias aur-s="yaourt --color"
+alias aur="yaourt --color"
+alias update="sudo yaourt -Syu"
 
 ### terminal
 alias 0="exit"
+alias ee="exit"
 
 ### finder
 alias mkdir="mkdir -p"
@@ -50,8 +53,8 @@ alias zip="zip -r -db"
 
 ### system search
 function zf {
-       "fd -H $1 /"
-        }
+        fd -H $1 /
+}
 
 ### size
 alias ds="df -h && du -sh *"
@@ -82,7 +85,8 @@ alias f3="fanficfare -p -o is_adult=true"
 alias b16s="base16-shell-preview"
 alias mp3g="mp3gain -k -r"
 alias bg-new="feh --randomize --bg-scale media/img/walls/*"
-#alias print="lpr -o fit-to-page -o outputorder=reverse"
+alias print="/home/sir/words/txt/term-print"
+alias xxx="startx"
 
 ### desktop only
 #alias bright="xrandr --output LVDS --brightness"
@@ -90,3 +94,5 @@ alias bg-new="feh --randomize --bg-scale media/img/walls/*"
 ### laptop only
 alias wr="sudo systemctl restart NetworkManager.service"
 alias wl="nmcli d wifi list"
+alias smn="xinput disable 11"
+alias smy="xinput enable 11"
