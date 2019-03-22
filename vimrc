@@ -97,6 +97,7 @@ cabbrev spell set spell!<CR>
 cabbrev Q qall
 cabbrev wQ wqall
 cabbrev m2h call Md2html()<CR>
+cabbrev tty call BatteryTimeOn()<CR>
 
 """" iabbrev
 iabbrev Mirnada Miranda
@@ -162,6 +163,13 @@ endfunction
 " http://vim.1045645.n5.nabble.com/convert-markdown-to-html-in-new-tab-td5719856.html
 " https://stackoverflow.com/questions/9499166/vim-automatically-formatting-html-files-with-tidy-and-script-tag-with-jsbeauti
 
+"""" show battery & time
+function! BatteryTimeOn()
+	let g:airline_section_x = '%5{g:word_count}W'
+	let g:airline_section_z = '%{g:battery_level}'
+	let g:airline_section_y = airline#section#create(['clock'])
+endfunction
+
 """ Plugins
 
 """" airline
@@ -174,17 +182,22 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s '
 let g:airline#extensions#wordcount#enabled = 0
+""""" symbols
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
 
-""""" status line variables ======
+""""" status line variables
 let g:airline_section_b = '%F'
 let g:airline_section_c = '%m%r%h'
-let g:airline_section_y = '%5{g:word_count}W'
-let g:airline_section_z = '%{g:battery_level}'
+let g:airline_section_x = ''
+let g:airline_section_y = ''
+let g:airline_section_z = '%5{g:word_count}W'
 
-""""" statusline layout ======
+""""" statusline layout
 let g:airline#extensions#default#layout = [
 	\ [ 'a', 'b', 'c' ],
-	\ [ 'y', 'z' ]
+	\ [ 'x', 'y', 'z' ]
 	\ ]
 let g:airline#extensions#default#section_truncate_width = {
 	\ 'a': 1,
@@ -198,18 +211,13 @@ let g:airline_theme = 'papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_powerline_fonts = 0
 
-""""" symbols ======
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
 """" airline clock
 " because no matter what I did `strftime` would not work
 let g:airline#extensions#clock#auto = 0
 let g:airline#extensions#clock#format = '%I:%M'
 let g:airline#extensions#clock#update = 6000
 function! AirlineInit()
-	let g:airline_section_z = airline#section#create(['clock', g:airline_symbols.space, g:airline_section_z])
+	let g:airline_section_y = airline#section#create(['clock'])
 endfunction
 """" MD Folding
 autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
@@ -236,7 +244,7 @@ let g:NERDTreeDirArrowCollapsible = ''
 augroup hello_vim
 	au!
 	au VimEnter * call SetBatteryLevel(0)
-	au User AirlineAfterInit call AirlineInit()
+"	au User AirlineAfterInit call AirlineInit()
 	au BufEnter * if &filetype == """ | setlocal ft=markdown | endif
 augroup END
 
