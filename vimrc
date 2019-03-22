@@ -10,14 +10,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'enricobacis/vim-airline-clock'
 Plug 'chusiang/vim-sdcv'
 Plug 'vim-scripts/fountain.vim'
-Plug '/usr/bin/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'lilydjwg/fcitx.vim'
-Plug 'mattn/webapi-vim'
-Plug 'mattn/gist-vim'
-Plug 'khorser/vim-rst-ftplugin'
+Plug 'scrooloose/nerdtree'
+Plug 'masukomi/vim-markdown-folding'
 call plug#end()
+
 """ filetype and syntax 
 filetype plugin on
 syntax on
@@ -52,7 +50,9 @@ set foldmethod=manual
 set listchars=trail:•,tab:▸-,nbsp:+
 set tabstop=5
 set softtabstop=5
+
 """ maps
+
 """" fold toggle
 noremap ff <C-O>za
 nnoremap ff za
@@ -60,10 +60,6 @@ onoremap ff <C-C>za
 vnoremap ff zF
 nnoremap fC zM
 nnoremap fO zR
-
-"""" insert
-inoremap <Up> <C-O>gk
-inoremap <Down> <C-O>gj
 
 """" normal
 noremap j gj
@@ -76,11 +72,14 @@ noremap <Tab> :bn<CR>
 noremap <S-Tab> :wincmd w<CR>
 noremap <F12> :! clear; python %<CR>
 
+"""" insert
+inoremap <Up> <C-O>gk
+inoremap <Down> <C-O>gj
+
 """" map
 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
 map ,w :w <C-R>=expand("%:p:h") . "/" <CR>
 map ,l :lopen<CR>
-map z- call SearchWord()<CR>
 
 """" cabbrev
 cabbrev smy set mouse=a<CR>
@@ -95,6 +94,9 @@ cabbrev def call SearchWord()<CR>
 cabbrev num set number!<CR>
 cabbrev rnum set relativenumber!<CR>
 cabbrev spell set spell!<CR>
+cabbrev Q qall
+cabbrev wQ wqall
+cabbrev m2h call Md2html()<CR>
 
 """" iabbrev
 iabbrev Mirnada Miranda
@@ -107,7 +109,9 @@ iabbrev wtag! <a href="/tagged/"></a><br/>
 """ netrw
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
+
 """ Functions
+
 """" word count
 let g:word_count='...'
 function WordCount()
@@ -123,20 +127,17 @@ function UpdateWordCount()
 	let g:word_count = n
 endfunction
 set updatetime=100
+
 """" folding
-""""" markdown
 "thank you godlygeek
-function HashtagFolds()
-	:set foldmethod=expr
-	:set foldlevel=0
-	:set foldexpr=getline(v\:lnum)=~'^#'?'>'.(matchend(getline(v\:lnum),'#*')-1)\:'='
-endfunction
+
 """"" config
 function ConfigFolds()
 	:set foldmethod=expr
 	:set foldlevel=0
 	:set foldexpr=getline(v\:lnum)=~'^##'?'>'.(matchend(getline(v\:lnum),'##*')-2)\:'='
 endfunction
+
 """" Mike's Battery
 let g:battery_level = ''
 function! SetBatteryLevel(timer_id)
@@ -149,8 +150,22 @@ function! SetBatteryLevel(timer_id)
 endfunction
 " source
 " https://michelerullo.wordpress.com/2018/02/16/hot-to-show-time-and-battery-status-on-vim-8-statusline/
+
+"""" convert Markdown to HTML
+function Md2html()
+	:enew
+	:exe "read !pandoc " . shellescape(@#, 1)
+	:set ft=html
+	:%!tidy -q -i --show-errors 0
+endfunction
+" source 
+" http://vim.1045645.n5.nabble.com/convert-markdown-to-html-in-new-tab-td5719856.html
+" https://stackoverflow.com/questions/9499166/vim-automatically-formatting-html-files-with-tidy-and-script-tag-with-jsbeauti
+
 """ Plugins
+
 """" airline
+
 """"" general stuff
 let g:ariline#extensions#enabled = 1
 let g:airline#extensions#whitespace#enable = 0
@@ -159,11 +174,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s '
 let g:airline#extensions#wordcount#enabled = 0
+
 """"" status line variables ======
 let g:airline_section_b = '%F'
 let g:airline_section_c = '%m%r%h'
 let g:airline_section_y = '%5{g:word_count}W'
 let g:airline_section_z = '%{g:battery_level}'
+
 """"" statusline layout ======
 let g:airline#extensions#default#layout = [
 	\ [ 'a', 'b', 'c' ],
@@ -180,10 +197,12 @@ let g:airline#extensions#default#section_truncate_width = {
 let g:airline_theme = 'papercolor'
 let g:airline_symbols_ascii = 1
 let g:airline_powerline_fonts = 0
+
 """"" symbols ======
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+
 """" airline clock
 " because no matter what I did `strftime` would not work
 let g:airline#extensions#clock#auto = 0
@@ -192,32 +211,27 @@ let g:airline#extensions#clock#update = 6000
 function! AirlineInit()
 	let g:airline_section_z = airline#section#create(['clock', g:airline_symbols.space, g:airline_section_z])
 endfunction
-"""" scratchpad
-let g:scratchpad_ftype = 'rst'
-nmap sp <Plug>(ToggleScratchPad)
-"""" FZF
-nmap fzf :FZF<CR>
-nmap find :Lines<CR>
-"""" Riv
-let g:riv_ignored_nmaps = '<Tab>,<S-Tab>'
-let g:riv_ignored_maps = '<Tab>,<S-Tab>'
-let g:riv_ignored_imaps = '<Tab>,<S-Tab>'
-let g:riv_ignored_vmaps = '<Tab>,<S-Tab>'
-"""" rST Table Formatter
-nmap <Leader><Leader>C :call ReflowTable()<CR>
-"""" InstantRST
-cabbrev show InstantRst<CR>
-cabbrev noshow StopInstantRst<CR>
-let g:instant_rst_browser = 'qutebrowser'
+"""" MD Folding
+autocmd FileType markdown set foldexpr=NestedMarkdownFolds()
+
 """" ale
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'E>'
 let g:ale_sign_warning = 'W>'
 let g:ale_enabled = 0
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" ~/.vim/plugged/ale/autoload/ale/highlight.vim >> add ``highlight clear SignColumn``  to the very end
 noremap <F2> :ALEToggle<CR>
+" ~/.vim/plugged/ale/autoload/ale/highlight.vim >> add ``highlight clear SignColumn``  to the very end
+
+"""" nerdtree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+map <Leader>l :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = '' 
+
 """ auto commands
+
 """" hello vim
 augroup hello_vim
 	au!
@@ -225,36 +239,40 @@ augroup hello_vim
 	au User AirlineAfterInit call AirlineInit()
 	au BufEnter * if &filetype == """ | setlocal ft=markdown | endif
 augroup END
+
 """" remember_folds
 augroup remember_folds
 	au!
 	au BufWrite ?* mkview!
 	au BufEnter ?* silent loadview
 augroup END
+
 """" set file types
 augroup set_filetypes
 	au!
 	au BufNew,BufRead,BufNewFile *.fountain set ft=fountain
 	au BufNew,BufRead,BufNewFile *.md set ft=markdown
 	au BufNew,BufRead,BufNewFile *.mkd set ft=markdown
-     au BufNew,BufRead,BufNewFile /tmp/*.txt set ft=rst 
+     au BufNew,BufRead,BufNewFile /tmp/*.txt set ft=markdown 
 augroup END
+
 """" folding
 augroup the_folds
 	au!
-"	au FileType markdown,text setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
-	au FileType markdown setlocal foldexpr=HashtagFolds() | setlocal foldmethod=expr
 	au FileType sh,zsh,muttrc,conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
 augroup END
+
 """" word_counter
 augroup word_counter
 	au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
+
 """" spell checker
 augroup spell_checker
 	au!
 	au FileType markdown,text,rst set spell
 augroup END
+
 """" set tabs and such
 au BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2
@@ -266,7 +284,6 @@ au BufNewFile,BufRead *.py
     \ set textwidth=79
     \ set expandtab
     \ set fileformat=unix
-""" gist
-cabbrev gkf Gist 2dd7ed3a453bce8cf37f594bd70d97f2
+
 """ vim:fdm=expr:fdl=0
 """" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
