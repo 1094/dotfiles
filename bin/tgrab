@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+sudo -s <<EOF
+fbgrab -i $HOME/media/img/grabs/$1.png
+chown rain:users $HOME/media/img/grabs/$1.png
+EOF

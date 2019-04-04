@@ -1,0 +1,23 @@
+# Account Settings -----------------------------------
+set signature = ~/.mutt/bsig 
+
+# Default inbox.
+set folder = "~/.mail/b3"
+set spoolfile = "~/.mail/b3/Inbox"
+set mbox = "~/.mail/b3/archive"
+set postponed = "~/.mail/b3/drafts"
+set record = "~/.mail/b3/sent"
+
+# Sidebar Options --------------------------------------
+unmailboxes *
+set imap_user = "b3"
+mailboxes =INBOX =sent =star =chats =archive
+
+# Compose View Options -------------------------------
+set realname = ""
+
+# Sending Mail ---------------------------------------
+set use_from=yes
+set from=
+set sendmail="/usr/bin/msmtp -a b3"
+set sendmail_wait = 0

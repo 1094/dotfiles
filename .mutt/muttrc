@@ -1,0 +1,128 @@
+# SHARED CONFIG
+### Paths ----------------------------------------------
+set alias_file       = ~/.mutt/alias
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+set mailcap_path     = ~/.mutt/mailcap
+set tmpdir           = ~/.mutt/temp
+
+### Basic Options --------------------------------------
+set wait_key = no        ### shut up, mutt
+set mbox_type = Maildir  ### mailbox type
+set timeout = 3          ### idle time before scanning
+set mail_check = 0       ### minimum time between scans
+unset move               ### gmail does that
+set delete               ### don't ask, just do
+unset confirmappend      ### don't ask, just do!
+set quit                 ### don't ask, just do!!
+unset mark_old           ### read/new is good enough for me
+set beep_new             ### bell on new mails
+set pipe_decode          ### strip headers and eval mimes when piping
+set thorough_search      ### strip headers and eval mimes before searching
+
+### Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "──[ Folder: %f ]──[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]──%>─%?p?( %p postponed )?──"
+
+### Header Options -------------------------------------
+ignore *                 ### ignore all headers
+unignore from: subject:   ### show only these
+unhdr_order *             ### some distros order things by default
+hdr_order from: subject:  ### and in this order
+
+### Index View Options ---------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z] %D: %-25F %s"
+set sort = threads                         ### like gmail
+set sort_aux = reverse-last-date-received  ### like gmail
+set uncollapse_jump                        ### don't collapse on an unread message
+set sort_re                                ### thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+### Index Key Bindings ---------------------------------
+bind index gg		first-entry
+bind index G		last-entry
+bind index <tab>	sync-mailbox
+bind index <space>	collapse-thread
+bind attach <return>	view-mailcap
+
+### Sync email --------------------------------------
+macro index 0 "<shell-escape>mbsync -a<enter>"
+
+### Sidebar Patch --------------------------------------
+set sidebar_visible = no
+set sidebar_width   = 20
+
+### Sidebar Navigation -------------------------------
+bind index,pager J sidebar-next
+bind index,pager K sidebar-prev
+bind index,pager O sidebar-open
+macro index S '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager S '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+
+### email alias ----------------------------------
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+### Pager View Options ---------------------------------
+# set pager_index_lines = 3  ### number of index lines to show
+# set pager_context = 10     ### number of context lines to show
+set pager_stop             ### don't go to next message automatically
+set menu_scroll            ### scroll in menus
+set tilde                  ### show tildes like in vim
+set smart_wrap
+unset markers              ### no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:###%]| {0,4}[a-z0-9]+[>|]+)+"
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+### Pager Key Bindings ---------------------------------
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+
+auto_view text/plain
+auto_view image/*
+auto_view application/msword
+auto_view text/html                    ### view html automatically
+alternative_order text/plain text/enriched text/html    ### save html for last
+
+### View attachments properly.
+bind attach <return> view-mailcap
+
+### Compose View Options -------------------------------
+set envelope_from               ### which from?
+set sig_dashes                  ### dashes before sig
+set sig_on_top = yes		### sig after reply & before quoted text
+set edit_headers                ### show headers when composing
+set fast_reply                  ### skip to compose when replying
+unset askcc                     ### don't ask for CC:
+unset askbcc                    ### don't ask for BCC
+set include=ask-yes             ### ask if include original message
+set fcc_attach                  ### save attachments with the body
+unset mime_forward              ### forward attachments as part of body
+set forward_format = "Fwd: %s"  ### format of subject when forwarding
+set forward_decode                   ### decode when forwarding
+set attribution = "On %d, %n wrote:" ### format of quoting header
+set reply_to                   ### reply to Reply to: field
+set reverse_name               ### reply as whomever it was to
+set forward_quote              ### include message in forwards
+set editor = "vim"
+
+### MACROs --------------------------------------------
+macro pager <f12> <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+# Control B
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "call urlscan to extract URLs out of a message"
+### Switch Mailboxes 
+macro index,pager <f1> '<sync-mailbox><enter-command>source ~/.mutt/b3<enter><change-folder>!<enter>'
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/dd<enter><change-folder>!<enter>'
+macro index,pager H '<change-folder>=Inbox<enter>'
+macro index D '<save-message>=[Gmail]/Trash<enter>'
+
+### Accounts ------------------------------------------- 
+source "~/.mutt/dd"

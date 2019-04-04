@@ -10,12 +10,13 @@ dynamic_title = true
 urgent_on_bell = false
 search_wrap = true
 cursor_blink = on
-cursor_shape = block
+cursor_shape = underline
 clickable_url = true
 icon_name = termite
 browser = qutebrowser
-font = FantasqueSansMono Nerd Font Regular 10
-font = Bekmuk Gulim Regular 10 	
+
+font = DoHyeon Nerd Font 10
+font = BPtypewrite Nerd Font Regular 10
 
 # [colors]
 ## base16-shell magic

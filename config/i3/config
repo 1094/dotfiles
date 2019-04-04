@@ -8,11 +8,12 @@ exec --no-startup-id ~/.config/autostart.sh
 exec --no-startup-id ~/.config/polybar/launch
 
 ### program and launcher shortcut
-bindsym $mod+d exec dmenu_run -b -fn 'TerminessTTF Nerd Font Mono-10' 
+#bindsym $mod+d exec dmenu_run -b -fn 'BPtypewrite Nerd Font-9'
+bindsym $mod+d exec ~/.config/rofi.sh
 bindsym $mod+Return exec termite
 bindsym $Mod+BackSpace exec pcmanfm
 bindsym $mod+KP_Enter exec termite
-bindsym $mod+Shift+Return exec lxterminal
+bindsym $mod+Shift+Return exec hyper
 bindsym $mod+w kill
 
 ### sound
@@ -49,17 +50,17 @@ floating_modifier $mod
 ### windows: focus, resize, moving 
 #### sanity
 focus_follows_mouse no
-#### change focus vim
+#### change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+h focus left
-#### change focus arrows
+### change focus arrows
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 bindsym $mod+Left focus left
-#### move focused container
+### move focused container
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -90,8 +91,7 @@ bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $alt+Tab workspace next
 
 #### workspace assignments
-for_window [class="^chrome$"] move window to workspace current
-for_window [class="^google$"] move window to workspace current
+# for_window [class="^chrome$"] move window to workspace current
 
 ### i3 reload, refresh
 bindsym $mod+Shift+c reload

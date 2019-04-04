@@ -1,0 +1,64 @@
+!!! xft
+!Xft.dpi:			112
+Xft.antialias:		true
+Xft.rgba:			rgb
+Xft.hinting:		true
+Xft.hintstyle:		hintslight
+
+!!! urxvt
+!!!! font
+URxvt.font:		xft:KGWhatDoestheFoxSayNerdFont Nerd Font:pixelsize:12
+URxvt.letterSpace:	-4
+URxvt.lineSpace:	0
+URxvt*allow_bold:	false
+
+!!!! scroll
+URxvt.saveLines:		2048
+URxvt.scrollStyle:		rxvt
+URxvt.scrollBar:         false
+
+!!!! cursor
+URxvt*cursorBlink:		true
+URxvt*cursorUnderline:	true
+URxvt*pointerBlank:		true
+
+!!!! perl
+URxvt*perl-ext-common:	default,matcher
+URxvt*urlLauncher:		/usr/bin/qutebrowser
+URxvt*matcher.button:	1
+
+!!!! other
+URxvt.depth:		32
+URxvt.transparent:	false
+URxvt.shading:		0
+URxvt.fading:		0
+
+!!! rofi
+rofi.show-icons:		true
+rofi.modi:			drun,window,run,file-browser
+rofi.matching:			fuzzy
+rofi.columns:			1
+rofi.font:			BPtypewrite Nerd Font 9
+rofi.hide-scrollbar:	true
+rofi.lines:			5
+rofi.line-padding:		5
+rofi.width:			40
+rofi.separator-style: solid
+
+!!!! file-browser
+rofi.file-browser-dir:	~/words
+
+!!!! colors
+! base16-ashes
+rofi.color-enabled: true
+
+! Property Name     BG       Border   Separator
+rofi.color-window:  #393F45, #393F45, #1C2023
+rofi.color-normal:  #393F45, #C7CCD1, #393F45, #393F45, #F3F4F5
+rofi.color-active:  #393F45, #AE95C7, #393F45, #393F45, #AE95C7
+rofi.color-urgent:  #393F45, #C7AE95, #393F45, #393F45, #C7AE95
+
+
+!!! vim doc folds
+! vim:fdm=expr:fdl=0
+! vim:fde=getline(v\:lnum)=~'^!!'?'>'.(matchend(getline(v\:lnum),'!!*')-2)\:'='

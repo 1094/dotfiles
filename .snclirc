@@ -1,0 +1,13 @@
+[sncli]
+cfg_sn_username = 
+cfg_sn_password = 
+cfg_search_tags = yes
+cfg_sort_mode = alpha
+cfg_pinned_ontop = yes
+cfg_format_strftime = %d %B %Y
+cfg_status_bar = yes
+#cfg_format_note_title = %F|%-N %T|%D
+cfg_format_note_title = %F|%-N
+cfg_log_reversed = yes
+cfg_sn_host = simple-note.appspot.com
+

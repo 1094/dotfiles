@@ -1,0 +1,9 @@
+'.platform-linux, .platform-linux .command-palette atom-text-editor':
+	'cmd-space': 'command-palette:toggle'
+'atom-workspace':
+	'ctrl-.': 'markdown-folding:foldall-h1'
+	'ctrl-shift-.': 'markdown-folding:foldall-h2'
+'.platform-linux atom-text-editor':
+	'ctrl-;': 'spell-check:correct-misspelling'
+'.platform-linux .corrections atom-text-editor':
+	'ctrl-;': 'core:cancel'

@@ -1,0 +1,24 @@
+# Account Settings -----------------------------------
+set signature = ~/.mutt/dsig
+
+# Default inbox.
+set folder = "~/.mail/dd/"
+set spoolfile = "~/.mail/dd/Inbox"
+set mbox = "~/.mail/dd/[Gmail]/All Mail"
+set postponed = "~/.mail/dd/[Gmail]/Drafts"
+set record = "~/.mail/dd/[Gmail]/Sent Mail"
+
+# Sidebar Options --------------------------------------
+unmailboxes *
+set imap_user = "dd"
+mailboxes =Inbox =worth =[Gmail]/'All Mail' =[Gmail]/'Sent Mail' =[Gmail]/Starred =[Gmail]/Chats =[Gmail]/Trash
+
+
+# Compose View Options -------------------------------
+set realname = ""
+
+# Sending Mail -------------------------------
+set use_from =yes
+set from=
+set sendmail="/usr/bin/msmtp -a dd"
+set sendmail_wait = 0

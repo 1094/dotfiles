@@ -33,11 +33,12 @@ border-color = #00000000
 padding = 2
 module-margin = 1
 ;;;;;;;;;;;;;;;;;;;;;;
-font-0 = "BPtypewrite:weight=regular:pixelsize=10;3"
+font-0 = "BPtypewrite Nerd Font:weight=regular:pixelsize=10;3"
 font-1 = "TerminessTTF Nerd Font Mono:weight=bold:pixelsize=10;3"
-font-2 = "Do Hyeon:weight=regular:pixelsize=11;3"
+font-2 = "DoHyeon Nerd Font:weight=regular:pixelsize=11;3"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;modules-left = wireless-network i3 xwindow
 modules-left = i3 xwindow
 modules-center = time wired-network
 modules-right = xkeyboard volume battery
@@ -155,12 +156,12 @@ label-foreground = ${colors.blue}
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/wireless-network]
 type = internal/network
-interface = wlp3s0b1
-:interface = wlp3s0
+:interface = wlp3s0b1
+interface = wlp3s0
 interval = 2
 ;;;;;;;;;;;;;;;;;;;;;;
 format-connected = <label-connected>
-label-connected = %signal% 
+label-connected = 
 label-connected-foreground = ${colors.green}
 ;;;;;;;;;;;;;;;;;;;;;;;
 label-disconnected = 

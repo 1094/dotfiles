@@ -1,0 +1,56 @@
+#!/bin/bash
+cd $HOME/
+cp -t $HOME/.dotfiles/ \
+	-v \
+	.bash_profile \
+	.bashrc \
+	.fbtermrc \
+	.hyper.js \
+	.pam_environment \
+	.sdcv_ordering \
+	.vale.ini \
+	.vimrc \
+	.xinitrc \
+	.Xmodmap \
+	.Xresources \
+	.zalias \
+	.zprofile \
+	.zshrc
+
+cd $HOME/.config/
+cp -t $HOME/.dotfiles/config/ \
+	-rv \
+	autostart.sh \
+	dunst \
+	i3 \
+	neofetch \
+	polybar \
+	ranger \
+	rofi.sh \
+	systemd \
+	termite \
+	user-dirs.dirs
+
+cp -t $HOME/.dotfiles/.config/qutebrowser \
+	-rv \
+	qutebrowser/autoconfig.yml \
+	qutebrowser/keys.conf \
+	qutebrowser/qutebroswer.conf
+
+cd $HOME/.vim
+cp -t $HOME/.dotfiles/.vim \
+	-rv \
+	ftplugin \
+	spell \
+	plugged/vim-airline/autoload/airline/themes
+
+cp -irv $HOME/txt/ $HOME/.dotfiles/bin
+rm -rf $HOME/.dotfiles/bin/practice
+
+# update some other stuff
+rclone -v sync $HOME/words dropbox:mcbak/words
+rclone -v sync $HOME/rmf dropbox:mcbak/rmf
+rclone -v copy $HOME/.config/qutebrowser/quickmarks dropbox:mcbak/misc
+rclone -v copy $HOME/.mutt/alias dropbox:mcbak/misc
+
+notify-send "dot-update: complete"

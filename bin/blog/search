@@ -1,0 +1,2 @@
+#!/bin/bash -x
+more /home/sir/rmf/posted | egrep -wi --color $1
