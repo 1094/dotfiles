@@ -44,7 +44,7 @@ cp -t $HOME/.dotfiles/.vim \
 	spell \
 	plugged/vim-airline/autoload/airline/themes
 
-cp -irv $HOME/txt/ $HOME/.dotfiles/bin
+cp -irv $HOME/txt/* $HOME/.dotfiles/bin
 rm -rf $HOME/.dotfiles/bin/practice
 
 # update some other stuff
