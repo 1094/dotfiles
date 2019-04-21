@@ -1,3 +1,4 @@
+;polybar main
 ;;;;;;;;;;;;;;;;;;;;;;
 [colors]
 black = #1C2023
@@ -11,9 +12,8 @@ purple = #c795ae
 red = #c7ae95
 yellow = #aec795
 ;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = LVDS1
 width = 100%
 height = 25
 ;offset-x = 1%
@@ -21,43 +21,30 @@ height = 25
 radius = 6.0
 ;bottom = true
 fixed-center = true
-;;;;;;;;;;;;;;;;;;;;;;
 background = ${colors.black}
 foreground = ${colors.white}
-;;;;;;;;;;;;;;;;;;;;;;
 line-size = 1
-;;;;;;;;;;;;;;;;;;;;;;
 border-size = 4
 border-color = #00000000
-;;;;;;;;;;;;;;;;;;;;;;
 padding = 2
 module-margin = 1
-;;;;;;;;;;;;;;;;;;;;;;
 font-0 = "BPtypewrite Nerd Font:weight=regular:pixelsize=10;3"
 font-1 = "TerminessTTF Nerd Font Mono:weight=bold:pixelsize=10;3"
 font-2 = "DoHyeon Nerd Font:weight=regular:pixelsize=11;3"
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;modules-left = wireless-network i3 xwindow
 modules-left = i3 xwindow
 modules-center = time wired-network
 modules-right = xkeyboard volume battery
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
 ;tray-background = $(colors.black}
-;;;;;;;;;;;;;;;;;;;;;
 ;wm-restack = i3
 ;override-redirect = true
-;;;;;;;;;;;;;;;;;;;;;
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
-;;;;;;;;;;;;;;;;;;;;
 cursor-click = pointer
 cursor-scroll = ns-resize
-;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 [module/xwindow]
 type = internal/xwindow
@@ -65,7 +52,6 @@ label = %title:0:40:...%
 label-font = 0
 label-foreground = ${colors.grey}
 label-foreground-font = 0
-;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -75,24 +61,15 @@ label-indicator-padding = 1
 label-indicator-margin = 1
 label-indicator-foreground = ${colors.purple}
 ;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;
 [module/filesystem]
 type = internal/fs
 interval = 5
-;;;;;;;;;;;;;;;;;;;;
 mount-0 = /home/sir/usb
-;;;;;;;;;;;;;;;;;;;;
 label-mounted = []USB]
 label-mounted-foreground = ${colors.silver}
-;;;;;;;;;;;;;;;;;;;;
 label-unmounted = []USB]
 label-unmounted-foreground = ${colors.grey}
-;;;;;;;;;;;;;;;;;;;;
 spacing = 2
-;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
-;[module/bspwm]
-;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
 [module/i3]
 type = internal/i3
@@ -104,35 +81,29 @@ fuzzy-match = true
 enable-scroll = false
 wrapping-scroll = false
 reverse-scroll = false
-;;;;;;;;;;;;;;;;;;;;;;
 ;ws-icon-0 = 1;
 ;ws-icon-1 = 2;
 ;ws-icon-2 = 3;
 ;ws-icon-default = 
-;;;;;;;;;;;;;;;;;;;;;;
 format = <label-state> <label-mode>
 label-mode = %mode%
 label-mode-foreground = ${colors.white}
 label-mode-background = ${colors.black}
 label-mode-padding = 2
-;;;;;;;;;;;;;;;;;;;;;;
 ; focused = Active workspace on focused monitor
 label-focused = %name%
 label-focused-background = ${colors.grey}
 label-focused-foreground = ${colors.black}
 label-focused-padding = 2
-;;;;;;;;;;;;;;;;;;;;;;
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %name%
 label-unfocused-background = ${colors.black}
 label-unfocused-foreground = ${colors.grey}
 label-unfocused-padding = 2
-;;;;;;;;;;;;;;;;;;;;;;
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
 label-visible-background = ${colors.black}
 label-visible-padding = 2
-;;;;;;;;;;;;;;;;;;;;;;
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
 label-urgent-background = ${colors.black}
@@ -145,7 +116,6 @@ label-urgent-padding = 2
 ;[module/backlight-acpi]
 ;[module/cpu]
 ;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 [module/mem]
 type = internal/memory
 interval = 2
@@ -153,51 +123,41 @@ format = R)<label>
 label = %gb_used%
 label-foreground = ${colors.blue}
 ;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;
 [module/wireless-network]
 type = internal/network
 :interface = wlp3s0b1
 interface = wlp3s0
 interval = 2
-;;;;;;;;;;;;;;;;;;;;;;
 format-connected = <label-connected>
 label-connected = 
 label-connected-foreground = ${colors.green}
-;;;;;;;;;;;;;;;;;;;;;;;
 label-disconnected = 
 label-disconnected-foreground = ${colors.silver}
-;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;
 [module/wired-network]
 type = internal/network
 interface = enp2s0f0
 interval = 2
-;;;;;;;;;;;;;;;;;;;;;;;
 format-connected = <label-connected>
 label-connected = 
 label-connected-foreground = ${colors.grey}
-;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/time]
 type = internal/date
 interval = 5
 time = %I:%M
 time-alt = "%d %b %Y"
-;;;;;;;;;;;;;;;;;;;;;;
 label-background = ${colors.black}
 label-foreground = ${colors.silver}
 label = %time%
-;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/volume]
 type=internal/alsa
 format-volume = <label-volume>v
 label-volume = %percentage%
 label-foreground = ${colors.silver}
-;;;;;;;;;;;;;;;;;;;;;;
 label-muted = 00v
 label-muted-foreground = ${colors.silver}
-;;;;;;;;;;;;;;;;;;;;;;
 mapped = true
 ;;;;;;;;;;;;;;;;;;;;;;
 [module/battery]
@@ -229,9 +189,7 @@ animation-charging-2-foreground = ${colors.green}
 animation-charging-3-foreground = ${colors.teal}
 animation-charging-4-foreground = ${colors.green}
 ;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
 ;[module/temperature]
-;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;
 [module/powermenu]
 type = custom/menu
@@ -260,17 +218,13 @@ menu-0-3-exec = i3-msg exit
 menu-0-4 =  
 menu-0-4-exec = i3lock -ei ~/img/wall/mirandy.png
 ;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;
 [global/wm]
 margin-top = 5
 margin-bottom = 5
-;;;;;;;;;;;;;;;;;;;;;
 ; vim:ft=dosini

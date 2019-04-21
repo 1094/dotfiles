@@ -1,7 +1,7 @@
 #!/bin/bash
 cd $HOME/
 cp -t $HOME/.dotfiles/ \
-	-v \
+	-rv \
 	.bash_profile \
 	.bashrc \
 	.fbtermrc \
@@ -10,6 +10,7 @@ cp -t $HOME/.dotfiles/ \
 	.sdcv_ordering \
 	.vale.ini \
 	.vimrc \
+	.vim-conf \
 	.xinitrc \
 	.Xmodmap \
 	.Xresources \
@@ -22,6 +23,7 @@ cp -t $HOME/.dotfiles/config/ \
 	-rv \
 	autostart.sh \
 	dunst \
+	htop \
 	i3 \
 	neofetch \
 	polybar \
@@ -31,21 +33,20 @@ cp -t $HOME/.dotfiles/config/ \
 	termite \
 	user-dirs.dirs
 
-cp -t $HOME/.dotfiles/.config/qutebrowser \
+cd $HOME/.config/qutebrowser
+cp -t $HOME/.dotfiles/config/qutebrowser/ \
 	-rv \
-	qutebrowser/autoconfig.yml \
-	qutebrowser/keys.conf \
-	qutebrowser/qutebroswer.conf
+	autoconfig.yml \
+	keys.conf \
+	qutebrowser.conf
 
 cd $HOME/.vim
 cp -t $HOME/.dotfiles/.vim \
 	-rv \
-	ftplugin \
 	spell \
 	plugged/vim-airline/autoload/airline/themes
 
-cp -irv $HOME/txt/* $HOME/.dotfiles/bin
-rm -rf $HOME/.dotfiles/bin/practice
+rsync -av $HOME/txt/* $HOME/.dotfiles/bin --exclude=practice/
 
 # update some other stuff
 rclone -v sync $HOME/words dropbox:mcbak/words

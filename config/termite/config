@@ -16,7 +16,7 @@ icon_name = termite
 browser = qutebrowser
 
 font = DoHyeon Nerd Font 10
-font = BPtypewrite Nerd Font Regular 10
+font = BPtypewrite Nerd Font Regular 11
 
 # [colors]
 ## base16-shell magic

@@ -1,79 +1,53 @@
 # Configuration for FbTerm
+font-names=BPtypewrite Nerd Font
+font-size=15
+# font-width=
+# font-height=
+# max 65535
+history-lines=65535
+# `$iconv --list` up to 5 seperated by commas
+text-encodings=
+# 0=underline, 1=block, intercval=milliseconds
+cursor-shape=0
+cursor-interval=1000
+# default word-chars `._-
+word-chars=
+screen-rotate=0
+input-method=/usr/bin/fcitx-fbterm
+ambiguous-wide=yes
 
-#font-names=BPtypewrite Nerd Font
-#font-names=UnPilgia Nerd Font
-font-names=KGWhatDoestheFoxSayNerdFont Nerd Font
-font-size=14
-
-# force font width (and/or height), usually for non-fixed width fonts
-# legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)
-#font-width=
-#font-height=
-
-# default color of foreground/background text
-# available colors: 0 = black, 1 = red, 2 = green, 3 = brown, 4 = blue, 5 = magenta, 6 = cyan, 7 = white
+### base16_black-metal-venom
 color-foreground=7
 color-background=0
-## base16_ashes
-# black, grey, silver, white
-color-0=1C2023
-color-8=747C84
-color-7=C7CCD1
-color-15=F3F4F5
+# black, bright black
+color-0=000000
+color-8=333333
+# white, bright white
+color-7=c1c1c1
+color-15=c1c1c1
+# red
+color-1=5f8787
+color-9=5f8787
+# green
+color-2=f8f7f2
+color-10=f8f7f2
+# yellow
+color-3=79241f
+color-11=79241f
+# blue
+color-4=888888
+color-12=888888
+# magenta
+color-5=999999
+color-13=999999
+# cyan
+color-6=aaaaaa
+color-14=aaaaaa
+# others
+color-16=aaaaaa
+color-17=444444
+color-18=121212
+color-19=222222
+color-20=999999
+color-21=999999
 
-# Red
-color-1=C7AE95
-color-9=C7AE95
-
-# Green
-color-2=95C7AE
-color-10=95C7AE
-
-# Yellow
-color-3=AEC795
-color-11#AEC795
-
-# Blue
-color-4=AE95C7
-color-12=AE95C7
-
-# Purple
-color-5 =C795AE
-color-13=C795AE
-
-# Teal
-color-6 =95AEC7
-color-14=95AEC7
-
-# Extra colors
-color-16=C7C795
-color-17=C79595
-color-18=393F45
-color-19=565E65
-color-20=ADB3BA
-color-21=DFE2E5
-
-# max scroll-back history lines of every window, value must be [0 - 65535], 0 means disable it
-history-lines=1000
-
-# up to 5 additional text encodings, multiple encodings must be seperated by ','
-# run 'iconv --list' to get available encodings.
-text-encodings=
-
-# cursor shape: 0 = underline, 1 = block
-# cursor flash interval in milliseconds, 0 means disable flashing
-cursor-shape=0
-cursor-interval=0
-
-# additional ascii chars considered as part of a word while auto-selecting text, except ' ', 0-9, a-z, A-Z
-word-chars=._-
-
-# change the clockwise orientation angle of screen display
-# available values: 0 = 0 degree, 1 = 90 degrees, 2 = 180 degrees, 3 = 270 degrees
-screen-rotate=0
-
-# specify the favorite input method program to run
-input-method=fcitx-fbterm
-
-# treat ambiguous width characters as wide
-#ambiguous-wide=yes

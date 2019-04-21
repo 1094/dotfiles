@@ -4,14 +4,12 @@ set -e
 ## both machines
 compton -b &
 /home/sir/.fehbg &
-/usr/local/bin/auto-lock-setting &
+xautolock -time 20 -locker /usr/local/bin/locker &
 unclutter --timeout 2 --ignore-scrolling &
 /usr/lib/libpolkit-agent-1.so.0.0.0 &
 dbus-launch pcmanfm -d &
 dunst &
 fcitx -dr &
-xfce4-power-manager &
-nm-applet &
 
 ## desktop
 #numlockx on &

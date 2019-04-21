@@ -11,6 +11,7 @@ export GOPATH=$HOME/.go
 export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/txt:$PATH
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export LC_ALL=en_US.UTF-8
 ### FZF Exports
 export FZF_DEFAULT_OPTS='--height 35%'
 export FZF_DEFAULT_COMMAND='fd'
@@ -59,10 +60,10 @@ autoload -Uz promptinit && promptinit
 prompt adam2
 
 #### My Prompt 
-if [ $TERM = "yaft-256color" ]; then
-	PROMPT="%~ [ "
-	RPROMPT="] %t | $(bat)%"
-fi
+#if [ $TERM = "yaft-256color" ]; then
+#	PROMPT="%~ [ "
+#	RPROMPT="] %t | $(bat)%"
+#fi
 
 ### base16-shell
 [ -n "$PS1" ] && \

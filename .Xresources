@@ -7,7 +7,7 @@ Xft.hintstyle:		hintslight
 
 !!! urxvt
 !!!! font
-URxvt.font:		xft:KGWhatDoestheFoxSayNerdFont Nerd Font:pixelsize:12
+URxvt.font:		xft:KGWhatDoestheFoxSayNerdFont Nerd Font:pixelsize:10
 URxvt.letterSpace:	-4
 URxvt.lineSpace:	0
 URxvt*allow_bold:	false

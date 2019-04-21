@@ -5,8 +5,8 @@ module.exports = {
   config: {
     updateChannel: 'stable',
 //// text
-    fontSize: 14,
-    fontFamily: 'Lekton Nerd Font Mono',
+    fontSize: 10,
+    fontFamily: '"KGWhatDoestheFoxSayNerdFont Nerd Font", "Lekton Nerd Font Mono", "BPtypewriter Nerd Font", monospace',
     // normal or bold
     fontWeight: 'normal',
     fontWeightBold: 'normal',
@@ -18,8 +18,8 @@ module.exports = {
 //// cursor
     cursorColor: 'rgba(248,28,229,0.8)',
     cursorAccentColor: '#000',
-    cursorShape: 'UNDERLINE',
-    cursorBlink: true,
+    cursorShape: 'BLOCK',
+    cursorBlink: false,
 //// window
     backgroundColor: '#000',
     selectionColor: 'rgba(248,28,229,0.3)',
@@ -78,7 +78,7 @@ module.exports = {
 			maximize: 'meta+enter',
 		},
 		
-		showIndicators: true,
+		showIndicators: false,
 		indicatorPrefix: '^⌥',
 			indicatorStyle: {
 				position: 'absolute',
@@ -99,11 +99,12 @@ module.exports = {
 	'hyper-hide-title',
 	'hyper-autohide-tabs',
 	'hyperminimal',
-	'hyper-zenburn',
+//	'hyper-zenburn',
+	'hyperterm-mild-dark',
 	],
   localPlugins: [],
   keymaps: {
-	"window:reloadFull": "f5",
+	"window:reloadFull": "ctrl+f5",
 	"plugins:update": "alt+f5",
 	"tab:new": "ctrl+t",
 	"pane:splitVertical": "alt+b",
