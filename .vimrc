@@ -13,14 +13,13 @@ Plug 'enricobacis/vim-airline-clock'
 Plug 'chusiang/vim-sdcv'
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
-"Plug 'matcatc/vim-asciidoc-folding'
 Plug 'mhinz/vim-startify'
 call plug#end()
 """ settings
 filetype plugin indent on
 syntax on
 "
-"colorscheme cosme
+colorscheme cosme
 "
 set mouse-=a
 set linebreak
@@ -39,8 +38,10 @@ augroup hello_vim
 	au!
 	au CursorHold,CursorHoldI * call UpdateWordCount()
 	au FileType asciidoc,markdown,rst,txt set spell
-	au BufEnter /tmp/*.txt set ft=asciidoc
+	au BufEnter /tmp/*.txt set filetype=asciidoc
+	au BufEnter *.adoc set filetype=asciidoc
 	au FileType sh,zsh,muttrc,conf setlocal foldexpr=ConfigFolds() | setlocal foldmethod=expr
+	au FileType vim setlocal foldexpr=VimFolds() | setlocal foldmethod=expr
 	au BufWrite ?* mkview!
 	au BufEnter ?* silent loadview
 augroup END
@@ -80,10 +81,9 @@ so $HOME/.vim-conf/functions/battery.vim
 so $HOME/.vim-conf/functions/tty.vim
 so $HOME/.vim-conf/functions/config-folds.vim
 so $HOME/.vim-conf/functions/adoc-clean.vim
+so $HOME/.vim-conf/functions/vim-fold.vim
 "
 """" other
 so $HOME/.vim-conf/brev.vim
 so $HOME/.vim-conf/hi.vim
 
-""" vim:fdm=expr:fdl=0
-" vim:fde=getline(v\:lnum)=~'^""'?'>'.(matchend(getline(v\:lnum),'""*')-2)\:'='
