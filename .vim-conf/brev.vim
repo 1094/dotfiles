@@ -19,3 +19,5 @@ iabbrev tmw tomorrow
 iabbrev NIgel Nigel
 iabbrev wtag! <a href="/tagged/"></a><br/>
 iabbrev Miradna Miranda
+
+inoremap <leader>rl https://randommirandyfics.tumblr.com/tagged/

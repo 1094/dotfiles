@@ -10,4 +10,8 @@ cfg_status_bar = yes
 cfg_format_note_title = %F|%-N
 cfg_log_reversed = yes
 cfg_sn_host = simple-note.appspot.com
+cfg_pager = vim
+cfg_editor = vim
 
+kb_view_note = meta enter
+kb_view_note_ext = enter

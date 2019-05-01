@@ -8,14 +8,13 @@ exec --no-startup-id ~/.config/autostart.sh
 exec --no-startup-id ~/.config/polybar/launch
 
 ### programs and launcher shortcut
-#bindsym $mod+d exec dmenu_run -b -fn 'BPtypewrite Nerd Font-9'
-bindsym $mod+d exec ~/.config/rofi.sh
-#bindsym $mod+Return exec termite
-#bindsym $mod+Shift+Return exec hyper
+bindsym $mod+Shift+d exec dmenu_run -fn 'Pleasewritemeasong Nerd Font-12'
+#bindsym $mod+d exec ~/.config/rofi.sh
+bindsym $mod+d exec gmrun
 bindsym $mod+Shift+Return exec termite
 bindsym $mod+Return exec hyper
 bindsym $Mod+BackSpace exec pcmanfm
-bindsym $mod+KP_Enter exec termite
+#bindsym $mod+KP_Enter exec termite
 bindsym $mod+w kill
 ### polybar
 bind 71 exec killall polybar
@@ -71,8 +70,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 ### for_windows: border, enable floating
-for_window [class="^.*"] border pixel 3 
-#for_window [class="^.*"] floating disable
+# run `xprop WM_CLASS` then click on the correct window
+for_window [class="^.*"] border pixel 2 
 
 ### workspace naming
 set $ws1 1
@@ -170,7 +169,7 @@ bindsym Return mode "default"
 
 ### gaps
 #### base gaps
-gaps inner 15
+gaps inner 8
 gaps outer 0
 #smart_gaps on
 #smart_borders on

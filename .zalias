@@ -85,7 +85,7 @@ alias i3-exit="i3-msg exit"
 
 ### just one alias programs
 alias vol="alsamixer"
-alias rain="cmatrix -asb"
+alias rain="cmatrix -ars"
 alias feh="feh -."
 alias mu="mupdf"
 alias f3="fanficfare -p -o is_adult=true"
@@ -95,10 +95,10 @@ alias bg-new="feh --randomize --bg-scale media/img/walls/*"
 alias print="~/txt/term-print"
 alias exx="exit & startx"
 alias xxx="startx"
-alias fonts="fc-list : family"
+alias fonts="fc-list : family | sort | fzf"
 alias fb="fbterm"
-alias by="byobu"
 alias speed="speedtest-cli --simple"
+alias a2h="asciidoctor -a stylesheet! --no-header-footer"
 
 ### desktop only
 #alias bright="xrandr --output LVDS --brightness"

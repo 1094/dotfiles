@@ -15,8 +15,9 @@ clickable_url = true
 icon_name = termite
 browser = qutebrowser
 
-font = DoHyeon Nerd Font 10
-font = BPtypewrite Nerd Font Regular 11
+# <C-S-r>
+font = Noto Sans CJK KR Regular 13
+font =  OverpassMono Nerd Font Light 10
 
 # [colors]
 ## base16-shell magic

@@ -1,6 +1,7 @@
 # Configuration for FbTerm
-font-names=BPtypewrite Nerd Font
-font-size=15
+#font-names=BPtypewrite Nerd Font
+font-names=Caveat Nerd Font
+font-size=18
 # font-width=
 # font-height=
 # max 65535

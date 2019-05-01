@@ -1,4 +1,4 @@
-"""" spell 
+""" spell 
 hi clear SpellBad
 hi SpellBad ctermbg=NONE cterm=underline
 hi clear SpellCap
@@ -7,6 +7,8 @@ hi clear Spelllocal
 hi Spelllocal ctermbg=NONE cterm=NONE
 hi clear SpellRare
 hi SpellRare ctermbg=NONE cterm=NONE
-"""" markdown brackets
+""" markdown brackets
 hi clear markdownError
 hi link markdownError normal
+""" folds
+hi Folded ctermfg=232 ctermbg=249

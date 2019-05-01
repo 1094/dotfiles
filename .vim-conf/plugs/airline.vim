@@ -43,6 +43,3 @@ let g:airline#extensions#clock#update = 6000
 function! AirlineInit()
 	let g:airline_section_y = airline#section#create(['clock'])
 endfunction
-
-""" vim:fdm=expr:fdl=0
-" vim:fde=getline(v\:lnum)=~'^"'?'>'.(matchend(getline(v\:lnum),'"*')-2)\:'='

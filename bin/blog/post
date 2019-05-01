@@ -3,7 +3,8 @@ set -e
 
     echo
     tput setaf 3
-    . $HOME/rmf/py3.env/bin/activate && echo "(py3.env)"
+#    . $HOME/rmf/py3.env/bin/activate && echo "(py3.env)"
+	echo 'hi'
     tput sgr 0
 while true
 do
@@ -11,7 +12,7 @@ do
     read -rp "  create a post? " play
 
         if [[ $play == "no" ]] ; then
-            deactivate && echo "py3.env: deactivated"
+#            deactivate && echo "py3.env: deactivated"
             tput setaf 4
             echo "Until next time."
             tput sgr 0

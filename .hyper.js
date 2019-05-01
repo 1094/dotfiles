@@ -1,18 +1,16 @@
-// hyper.js 1st try
-
 module.exports = {
 //// main config
   config: {
     updateChannel: 'stable',
 //// text
-    fontSize: 10,
-    fontFamily: '"KGWhatDoestheFoxSayNerdFont Nerd Font", "Lekton Nerd Font Mono", "BPtypewriter Nerd Font", monospace',
+    fontSize: 12,
+    fontFamily: '"AYearWithOutRain Nerd Font", "Architects Daughter","Short Stack", monospace',
     // normal or bold
     fontWeight: 'normal',
     fontWeightBold: 'normal',
     // can't negative numbers
     lineHeight: 1,
-    letterSpacing: 0,
+    letterSpacing: 1,
      // text color
     foregroundColor: '#fff',
 //// cursor
@@ -99,14 +97,14 @@ module.exports = {
 	'hyper-hide-title',
 	'hyper-autohide-tabs',
 	'hyperminimal',
-//	'hyper-zenburn',
+	// 'hyper-zenburn',
 	'hyperterm-mild-dark',
 	],
   localPlugins: [],
   keymaps: {
 	"window:reloadFull": "ctrl+f5",
 	"plugins:update": "alt+f5",
-	"tab:new": "ctrl+t",
+	// "tab:new": "ctrl+t",
 	"pane:splitVertical": "alt+b",
 	"pane:splitHorizontal": "alt+v",
   },
