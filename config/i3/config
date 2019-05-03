@@ -5,24 +5,28 @@ set $alt Mod1
 
 ### start up
 exec --no-startup-id ~/.config/autostart.sh
-exec --no-startup-id ~/.config/polybar/launch
+# exec --no-startup-id ~/.config/polybar/launch
+exec --no-startup-id tint2
 
 ### programs and launcher shortcut
-bindsym $mod+Shift+d exec dmenu_run -fn 'Pleasewritemeasong Nerd Font-12'
+#bindsym $mod+d exec dmenu_run -b -fn 'BPtypewrite Nerd Font-9'
 #bindsym $mod+d exec ~/.config/rofi.sh
 bindsym $mod+d exec gmrun
 bindsym $mod+Shift+Return exec termite
 bindsym $mod+Return exec hyper
 bindsym $Mod+BackSpace exec pcmanfm
-#bindsym $mod+KP_Enter exec termite
+bindsym $mod+KP_Enter exec hyper
 bindsym $mod+w kill
 ### polybar
-bind 71 exec killall polybar
-bind 72 exec polybar main
+bindsym $mod+F6 exec killall polybar main
+bindsym $mod+Shift+F6 exec polybar main
 ### sound
 bind 95 exec amixer set Master 2%-
 bind 96 exec amixer set Master 2%+
 bind 76 exec amixer set Master toggle
+bind 122 exec amixer set Master 2%-
+bind 123 exec amixer set Master 2%+
+bind 121 exec amixer set Master toggle
 
 ### screenshots with scrot 
 bind 69 --release exec --no-startup-id scrot -u '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "window d(^ ^o)"
@@ -70,8 +74,8 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 ### for_windows: border, enable floating
-# run `xprop WM_CLASS` then click on the correct window
-for_window [class="^.*"] border pixel 2 
+for_window [class="^.*"] border pixel 3 
+#for_window [class="^.*"] floating disable
 
 ### workspace naming
 set $ws1 1
@@ -154,13 +158,14 @@ bindsym Return mode "default"
 }
 
 ### mode_exit
-set $mode_exit 끝내다: [l]로그오프하다 - [k]잠금 화면 - [r]다시 시작하다 - [s]종료
+set $mode_exit 끝내다: [l]ogout | loc[k] | [r]estart | sus[p]end | [s]hutdown
 bindsym $mod+Shift+q mode "$mode_exit"
 
 mode "$mode_exit" {
 bindsym l exec i3-msg exit
-bindsym k exec $HOME/words/txt/setting/locker; mode "default"
+bindsym k exec locker; mode "default"
 bindsym r exec systemctl reboot
+bindsym p exec locker & systemctl suspend; mode "default"
 bindsym s exec shutdown now
 
 bindsym Escape mode "default"
@@ -169,7 +174,7 @@ bindsym Return mode "default"
 
 ### gaps
 #### base gaps
-gaps inner 8
+gaps inner 15
 gaps outer 0
 #smart_gaps on
 #smart_borders on

@@ -5,12 +5,12 @@
 # Set terminal
 Terminal = termite
 TermExec = ${Terminal} -e
-AlwaysInTerm = ssh telnet ftp vim pacli htop ranger man
+AlwaysInTerm = ssh telnet ftp vim pacli htop ranger man sncli mutt
 
 # Set window geometry (except height)
 Width = 400
-Top = 50
-Left = 50
+Top = 300
+Left = 450
 
 # History size
 History = 256
@@ -45,7 +45,7 @@ URL_pacs = ${TermExec} 'pacman -Ss %s'
 # extension handlers
 EXT:doc,rtf = vim %s
 EXT:txt,cc,cpp,h,java,html,htm,epl,tex,latex,js,css,xml,xsl,am,php,css,js,py,rb = vim %s
-EXT:mpeg,mpg,avi,mkv,flv = vlc %s
+EXT:mpeg,mpg,avi,mkv,flv,mp4 = mpv %s
 EXT:mp3,ogg,m4a,wmv,wma = deadbeef %s
 EXT:ps = gv %s
 EXT:pdf = mupdf %
