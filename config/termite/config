@@ -16,8 +16,8 @@ icon_name = termite
 browser = qutebrowser
 
 # <C-S-r>
-font = Noto Sans CJK KR Regular 13
-font =  OverpassMono Nerd Font Light 10
+font = Noto Sans CJK KR Regular 12
+font = BPtypewrite Nerd Font 11
 
 # [colors]
 ## base16-shell magic

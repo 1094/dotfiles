@@ -1,0 +1,6 @@
+[Unit]
+Description=Drink some water, fool
+
+[Service]
+Type=oneshot
+ExecStart=notify-send --urgency=critical --app-name=WATER 'DRINK SOME!'

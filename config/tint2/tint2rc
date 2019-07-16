@@ -100,7 +100,7 @@ border_color_pressed = #ffffff 60
 
 #-------------------------------------
 # Panel
-panel_items = L:T:SC
+panel_items = LT:SB:C
 panel_size = 100% 28
 panel_margin = 0 0
 panel_padding = 4 0 4
@@ -111,7 +111,7 @@ panel_position = bottom center horizontal
 panel_layer = normal
 panel_monitor = all
 panel_shrink = 0
-autohide = 1
+autohide = 0
 autohide_show_timeout = 0.5
 autohide_hide_timeout = 0.5
 autohide_height = 5
@@ -155,7 +155,7 @@ task_centered = 1
 urgent_nb_of_blink = 100000
 task_maximum_size = 35 35
 task_padding = 4 3 4
-task_font = Monofur NF Italic 8
+task_font = BPtypewrite Nerd Font 8
 task_tooltip = 1
 task_thumbnail = 0
 task_thumbnail_size = 210
@@ -195,6 +195,7 @@ launcher_tooltip = 1
 launcher_item_app = /usr/share/applications/termite.desktop
 launcher_item_app = /usr/share/applications/qutebrowser.desktop
 launcher_item_app = /usr/share/applications/notepadqq.desktop
+launcher_item_app = /usr/share/applications/me.mitya57.ReText.desktop
 
 #-------------------------------------
 # Clock
@@ -221,14 +222,14 @@ battery_tooltip = 1
 battery_low_status = 10
 battery_low_cmd = notify-send "battery low"
 battery_full_cmd = 
-bat1_font = sans 8
-bat2_font = sans 6
+bat1_font = BPtypewrite Nerd Font 10
+bat2_font = 
 battery_font_color = #eeeeee 100
-bat1_format = 
-bat2_format = 
+bat1_format = %p 
+bat2_format =  
 battery_padding = 1 0
 battery_background_id = 0
-battery_hide = 101
+battery_hide = never
 battery_lclick_command = 
 battery_rclick_command = 
 battery_mclick_command = 
@@ -262,5 +263,5 @@ tooltip_hide_timeout = 0.1
 tooltip_padding = 2 2
 tooltip_background_id = 5
 tooltip_font_color = #222222 100
-tooltip_font = sans 9
+tooltip_font = BPtypewrite Nerd Font 9
 

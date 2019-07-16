@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+if [[ $1 == "-d" ]] ; then
+	sdcv --color -u 'WordNet' "Oxford Advanced Learner's Dictionary" 'dictd_www.dict.org_devils' $2
+
+elif [[ $1 == "-t" ]] ; then
+	sdcv --color -u 'English Thesaurus' 'Concise Oxford Thesaurus 2nd Ed. (Eng-Eng)' $2
+
+elif [[ $1 == "-e" ]] ; then
+	sdcv --color -u 'The Britannica Concise' $2
+
+elif [[ $1 == "-l" ]] ; then
+	sdcv --color -u 'An Asperger dictionary of everyday expressions' 'The Idiom Connection (En-En)' 'English Dialects 3.0 (En-En)' $2
+
+elif [[ $1 == "-k" ]] ; then
+	sdcv --color -u 'Korean-English Dic' 'Korean Dic' 'Hanja(Korean Hanzi) Dic' $2
+
+elif [[ $1 == "-ek" ]] ; then
+	sdcv --color -u 'quick_english-korean' $2
+
+elif [[ $1 == "-ke" ]] ; then
+	sdcv --color -u 'Kor-Eng Dictionary' $2
+	
+elif [[ $1 == "-a" ]] ; then
+	sdcv --color $2
+fi

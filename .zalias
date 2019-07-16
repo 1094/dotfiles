@@ -1,8 +1,13 @@
 # My Alias File
+
+### searching
 alias wta="cat ~/.zalias | grep"
 alias hist="cat ~/.zhistory | grep"
+function zf {
+	fd -H $1 /
+	}
 
-### vim
+### dotfile edit
 alias v3="vim ~/.config/i3/config"
 alias vt="vim ~/.config/termite/config"
 alias vp="vim ~/.config/polybar/config"
@@ -12,8 +17,7 @@ alias vz="vim ~/.zshrc"
 alias va="vim ~/.zalias"
 alias vx="vim ~/.Xresources"
 alias vc="vim ~/.config/autostart.sh"
-alias vD="vimdiff"
-alias vP="vimpager"
+alias vf="vim ~/.fbtermrc"
 
 ### refresh
 alias 0Z="source ~/.zshrc"
@@ -49,19 +53,15 @@ alias update="sudo yaourt -Syu"
 ### terminal
 alias 0="exit"
 alias ee="exit"
+alias ZZ="exit"
 
-### finder
+### files
 alias mkdir="mkdir -p"
 alias mv="mv -uv"
 alias rmd="rm -irf"
 alias cp="cp -irv"
 alias scp="sudo cp -irv"
 alias zip="zip -r -db"
-
-### search
-function zf {
-	fd -H $1 /
-}
 
 ### size
 alias ds="df -h && du -sh *"
@@ -79,10 +79,6 @@ alias rc-c="rclone -v copy"
 alias ytm="youtube-dl --extract-audio --audio-format mp3 --output '~/media/%(title)s.%(ext)s'"
 alias ytv="youtube-dl --output '~/media/%(title)s.%(ext)s'"
 
-### system
-alias hold="systemctl suspend"
-alias i3-exit="i3-msg exit"
-
 ### just one alias programs
 alias vol="alsamixer"
 alias rain="cmatrix -ars"
@@ -92,7 +88,6 @@ alias f3="fanficfare -p -o is_adult=true"
 alias b16s="base16-shell-preview"
 alias mp3g="mp3gain -k -r"
 alias bg-new="feh --randomize --bg-scale media/img/walls/*"
-alias print="~/txt/term-print"
 alias exx="exit & startx"
 alias xxx="startx"
 alias fonts="fc-list : family | sort | fzf"

@@ -5,8 +5,6 @@ set $alt Mod1
 
 ### start up
 exec --no-startup-id ~/.config/autostart.sh
-# exec --no-startup-id ~/.config/polybar/launch
-exec --no-startup-id tint2
 
 ### programs and launcher shortcut
 #bindsym $mod+d exec dmenu_run -b -fn 'BPtypewrite Nerd Font-9'
@@ -33,7 +31,7 @@ bind 69 --release exec --no-startup-id scrot -u '%a_%b_%d_%S.png' -e 'mv $f ~/me
 bind 70 --release exec --no-startup-id scrot '%a_%b_%d_%S.png' -e 'mv $f ~/media/scrot/' && notify-send "(o^ ^)b screen"
 
 ### window title font
-font pango:TerminessTTF Nerd Font Mono 0
+font pango:AYearWithoutRain Nerd Font 0
 
 ### windows: split, floating, parent/child 
 bindsym $mod+b split h
@@ -44,7 +42,7 @@ bindsym $alt+t layout tabbed
 bindsym $alt+Shift+t layout toggle stacking
 
 ### floating containers
-bindsym $alt+Shift+f floating toggle
+bindsym $alt+Shift+l floating toggle
 bindsym $mod+Tab focus mode_toggle
 
 ### scratchpad
@@ -95,7 +93,8 @@ bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 #### toggle workspaces
-bindsym $alt+Tab workspace next
+bindsym $mod+$alt+Right workspace next
+bindsym $mod+$alt+Left workspace prev
 
 #### workspace assignments
 # for_window [class="^chrome$"] move window to workspace current
@@ -118,7 +117,14 @@ client.urgent           #565e65 #c7ae95 #f3f4f5 #c7ae95
 client.placeholder      #1c2023 #1c2023 #c7ccd1 #1c2023
 client.background       #f3f4f5
 
-#### mode_resize
+### i3bar
+bar {
+	status_command i3status --config ~/.config/i3/status.conf
+	font pango:BPtypewrite Nerd Font 9
+	position top
+}
+
+### mode_resize
 bindsym $mod+r mode "resize"
 mode "resize" {
 bindsym Left resize shrink width 5 px or 5 ppt
@@ -129,6 +135,7 @@ bindsym Right resize grow width 5 px or 5 ppt
 bindsym Return mode "default"
 bindsym Escape mode "default"
 }
+
 
 ### mode_apps
 set $mode_apps 애플리케이션: [q]브라우저 - [v]편집기 - s[n]cli - [m]전자우편 - [r]텍스트 편집기

@@ -28,9 +28,9 @@ cp -t $HOME/.dotfiles/config/ \
 	neofetch \
 	polybar \
 	ranger \
-	rofi.sh \
 	systemd \
 	termite \
+	tint2 \
 	user-dirs.dirs
 
 cd $HOME/.config/qutebrowser
@@ -49,8 +49,6 @@ cp -t $HOME/.dotfiles/.vim \
 rsync -av $HOME/txt/* $HOME/.dotfiles/bin --exclude=practice/
 
 # update some other stuff
-rclone -v sync $HOME/words dropbox:mcbak/words
-rclone -v sync $HOME/rmf dropbox:mcbak/rmf
 rclone -v copy $HOME/.config/qutebrowser/quickmarks dropbox:mcbak/misc
 rclone -v copy $HOME/.mutt/alias dropbox:mcbak/misc
 

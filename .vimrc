@@ -15,11 +15,11 @@ Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'mhinz/vim-startify'
 Plug 'itmm/vim-asciidoc'
-" always last
-Plug 'ryanoasis/vim-devicons'
 call plug#end()
 """ settings
-filetype plugin indent on
+"filetype plugin indent on
+filetype plugin on
+filetype indent off
 syntax on
 "
 let g:asciidoc_folding=1
@@ -39,6 +39,9 @@ set incsearch
 set listchars=trail:•,tab:▸-,nbsp:+
 set thesaurus+=$HOME/.vim/thesaurus/mthesaur.txt
 set scrolloff=999
+set noexpandtab
+set splitbelow
+set splitright
 "
 """ augroup
 augroup hello_vim
@@ -51,12 +54,14 @@ augroup hello_vim
 	au FileType vim setlocal foldexpr=VimFolds() | setlocal foldmethod=expr
 	au BufWrite ?* mkview!
 	au BufEnter ?* silent loadview
+	au BufEnter *.rst set tabstop=2
 augroup END
 "
 """ normal maps
 noremap ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-noremap ,w :w <C-R>=expand("%:p:h") . "/" <CR>
-noremap ,h :e $HOME/words/
+noremap ,v :vsplit <C-R>=expand("%:p:h") . "/" <CR>
+noremap ,h :split <C-R>=expand("%:p:h") . "/" <CR>
+noremap ,w :e $HOME/words/
 noremap <Tab> :bn<CR><CR>
 nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
@@ -69,8 +74,9 @@ noremap gj j
 noremap 0 g0
 noremap $ g$
 noremap ) f.
-noremap <leader>o i<CR><CR>
+noremap <leader>o o<esc>
 noremap zz :bd<CR>
+noremap <leader>P :InstantRst!<CR><CR>
 "
 """ insert maps
 inoremap <leader>o <esc>o

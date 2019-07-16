@@ -1,0 +1,4 @@
+#!/bin/bash
+cat $HOME/doc/acnl-hex \
+	| grep $1 \
+	| more

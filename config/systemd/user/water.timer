@@ -1,0 +1,10 @@
+[Unit]
+Description=Drink some water, fool
+
+[Timer]
+OnBootSec=15m
+OnUnitActiveSec=15m
+Unit=water.service
+
+[Install]
+WantedBy=timers.target

@@ -65,7 +65,7 @@ do
                     site=ffn
                 elif [[ $www == "p" ]] ; then 
                     read -rp "  link? " link  
-                    site=p&p
+                    site=ralst
                     link=$link
                 elif [[ $www == "l" ]] ; then
                     read -rp "  link? " link
@@ -99,13 +99,13 @@ do
                 if [[ $after == "no" ]] ; then
                     echo "client.create_text('randommirandyfics', state=\"queue\", format=\"markdown\", tags=[\"mirandy\", \""$title"\", \""$author"\", \""$site"\", \""$status"\", \""$length"\"], title=\"$summary\", body=\"[$title]($link) by $author\")" >> $post
                 elif [[ $after == "yes" ]] ; then
-                    read -a title2 -rp "  follows..."
+                    read -a title2 -rp "  follows... "
                     title2=${title2[@]}
-                    read -rp "  link?" link2
-                    echo "client.create_text('randommirandyfics', state=\"queue\", format=\"markdown\", tags=[\"mirandy\", \""$title"\", \""$author"\", \""$site"\", \""$status"\", \""$site"\"], title=\"$summary\", body=\"[$title]($link) by $author<br/>Follows [$title2]($link2)\")" >> $post
+                    read -rp "  link? " link2
+                    echo "client.create_text('randommirandyfics', state=\"queue\", format=\"markdown\", tags=[\"mirandy\", \""$title"\", \""$author"\", \""$site"\", \""$status"\", \""$length"\"], title=\"$summary\", body=\"[$title]($link) by $author<br/>Follows [$title2]($link2)\")" >> $post
                 fi
     
-            vim -c :Goyo $post
+            vim $post
             echo "..."
         
             read -rp "  post it? " queue

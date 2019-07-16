@@ -12,6 +12,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$HOME/txt:$PATH
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export LC_ALL=en_US.UTF-8
+
 ### FZF Exports
 export FZF_DEFAULT_OPTS='--height 35%'
 export FZF_DEFAULT_COMMAND='fd'
@@ -20,6 +21,7 @@ export FZF_DEFAULT_COMMAND='fd'
 source $ZSH/oh-my-zsh.sh
 source $HOME/.zalias
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 ### History
 HISTFILE=$HOME/.zhistory
 HISTSIZE=2000
@@ -36,7 +38,7 @@ setopt share_history # share command history data
 
 ### Plugins
 plugins=(
-  git colorize history-substring-search colored-man-pages
+  battery git colorize history-substring-search colored-man-pages
 )
 
 ### Settings
@@ -44,26 +46,34 @@ WORDCHARS=${WORDCHARS//\/[&.;]}
 autoload -U compinit colors zcalc
 compinit -d
 colors
+
 ### Set Opt
 setopt auto_cd
 setopt prompt_subst
+setopt promptsubst
 
 ### Functions
 #### `ls` after `cd`
 auto-ls () { ls -F; }
 chpwd_functions=( auto-ls $chpwd_functions )
+
 #### battery
-bat () { acpi | grep --color=never -oP "(\d+)%" | tr -d "\n" }
-### Prompt
-#### promptinit
+bat () { acpi | grep --color=never -oP "(\d+)%" }
+export BAT=$(acpi | grep --color=never -oP "(\d+)%") 
+
 autoload -Uz promptinit && promptinit
 prompt adam2
 
-#### My Prompt 
-#if [ $TERM = "yaft-256color" ]; then
-#	PROMPT="%~ [ "
-#	RPROMPT="] %t | $(bat)%"
-#fi
+### My Prompt 
+#PROMPT="[%~] $ "
+
+if [ $TERM = "fbterm" ]; then
+	PROMPT="[%~] $"
+	RPROMPT="[$(bat)%]"
+elif [ $TERM = "linux" ]; then
+	PROMPT="[%~] $"
+	RPROMPT="[$(bat)%]"
+fi
 
 ### base16-shell
 [ -n "$PS1" ] && \

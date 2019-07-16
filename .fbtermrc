@@ -1,8 +1,9 @@
 # Configuration for FbTerm
-#font-names=BPtypewrite Nerd Font
-font-names=Caveat Nerd Font
-font-size=18
-# font-width=
+#font-names=BPtypewrite Nerd Font, Noto Sans Mono CJK KR
+#font-names=AYearWithoutRain Nerd Font, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
+font-names=KG Drops of Jupiter, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
+font-size=12
+font-width=12
 # font-height=
 # max 65535
 history-lines=65535
@@ -10,45 +11,44 @@ history-lines=65535
 text-encodings=
 # 0=underline, 1=block, intercval=milliseconds
 cursor-shape=0
-cursor-interval=1000
+cursor-interval=2000
 # default word-chars `._-
 word-chars=
 screen-rotate=0
 input-method=/usr/bin/fcitx-fbterm
 ambiguous-wide=yes
 
-### base16_black-metal-venom
+#### base16_black-metal-venom
 color-foreground=7
 color-background=0
-# black, bright black
+## black, bright black
 color-0=000000
 color-8=333333
-# white, bright white
+## white, bright white
 color-7=c1c1c1
 color-15=c1c1c1
-# red
+## red
 color-1=5f8787
 color-9=5f8787
-# green
+## green
 color-2=f8f7f2
 color-10=f8f7f2
-# yellow
+## yellow
 color-3=79241f
 color-11=79241f
-# blue
+## blue
 color-4=888888
 color-12=888888
-# magenta
+## magenta
 color-5=999999
 color-13=999999
-# cyan
+## cyan
 color-6=aaaaaa
 color-14=aaaaaa
-# others
+## others
 color-16=aaaaaa
 color-17=444444
 color-18=121212
 color-19=222222
 color-20=999999
 color-21=999999
-

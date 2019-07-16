@@ -67,20 +67,22 @@ settings:
   fonts.web.family.fantasy:
     global: BPtypewrite Nerd Font
   fonts.web.family.fixed:
-    global: BPtypewrite Nerd Font
+    global: AYearWithoutRain Nerd Font
   fonts.web.family.sans_serif:
-    global: BPtypewrite Nerd Font
+    global: AYearWithoutRain Nerd Font
   fonts.web.family.serif:
-    global: BPtypewrite Nerd Font
+    global: AYearWithoutRain Nerd Font
   fonts.web.family.standard:
-    global: BPtypewrite Nerd Font
+    global: AYearWithoutRain Nerd Font
   fonts.web.size.default:
-    global: 13
+    global: 14
   fonts.web.size.default_fixed:
-    global: 11
+    global: 14
   fonts.web.size.minimum:
-    global: 11
+    global: 12
   fonts.web.size.minimum_logical:
     global: 11
+  scrolling.bar:
+    global: never
   tabs.background:
     global: true

@@ -1,10 +1,11 @@
 module.exports = {
 //// main config
   config: {
-    updateChannel: 'stable',
+    //updateChannel: 'stable',
 //// text
-    fontSize: 12,
-    fontFamily: '"AYearWithOutRain Nerd Font", "Architects Daughter","Short Stack", monospace',
+    fontSize: 10,
+    fontFamily: '"KG Drops of Jupiter", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
+    //fontFamily: '"AYearWithOutRain Nerd Font", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
     // normal or bold
     fontWeight: 'normal',
     fontWeightBold: 'normal',
@@ -48,6 +49,10 @@ module.exports = {
 		lightCyan: '#68FDFE',
 		lightWhite: '#FFFFFF',
 	},
+//// base16
+    base16: {
+    	scheme: 'papercolor',
+	},
 //// other
     shell: '/usr/bin/zsh',
     shellArgs: ['--login'],
@@ -81,8 +86,8 @@ module.exports = {
 			indicatorStyle: {
 				position: 'absolute',
 				top: 0,
-				right: '10px',
-				fontSize: '8px',
+				right: '0px',
+				fontSize: '0px',
 			},
 		focusOnMouseHover: false,
 		inactivePaneOpacity: 0.3,
@@ -97,18 +102,15 @@ module.exports = {
 	'hyper-hide-title',
 	'hyper-autohide-tabs',
 	'hyperminimal',
-	// 'hyper-zenburn',
-	'hyperterm-mild-dark',
+	'hypersixteen'
 	],
   localPlugins: [],
   keymaps: {
 	"window:reloadFull": "ctrl+f5",
 	"plugins:update": "alt+f5",
-	// "tab:new": "ctrl+t",
 	"pane:splitVertical": "alt+b",
 	"pane:splitHorizontal": "alt+v",
   },
-};
 
-////// vim:fdm=expr:fdl=0 
-/////// vim:fde=getline(v\:lnum)=~'^//'?'>'.(matchend(getline(v\:lnum),'//*')-2)\:'=' 
+  css: '.notification_indicator{display:none;}',
+};

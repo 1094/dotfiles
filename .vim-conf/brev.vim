@@ -2,6 +2,7 @@
 cabbrev smy set mouse=a<CR>
 cabbrev smn set mouse-=a<CR>
 cabbrev vv e $MYVIMRC<CR>
+cabbrev vh split $MYVIMRC<CR>
 cabbrev vs source $MYVIMRC<CR> 
 cabbrev vz e ~/.zshrc<CR>
 cabbrev v3 e ~/.config/i3/config<CR>
@@ -20,4 +21,5 @@ iabbrev NIgel Nigel
 iabbrev wtag! <a href="/tagged/"></a><br/>
 iabbrev Miradna Miranda
 
-inoremap <leader>rl https://randommirandyfics.tumblr.com/tagged/
+inoremap <leader>ro <a href="/tagged/
+inoremap <leader>rc </a><br/>

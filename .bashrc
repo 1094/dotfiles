@@ -1,10 +1,22 @@
 # ~/.bashrc
 
-### exports
-export VISUAL=vim
+### Exports
 export EDITOR=vim
+export VISUAL=vim
 export TERMINAL=termite
+export BROWSER=qutebrowser
 export PRINTER=Canon
+export USB=/run/media/sir
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/txt:$PATH
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export LC_ALL=en_US.UTF-8
+export FZF_DEFAULT_OPTS='--height 35%'
+export FZF_DEFAULT_COMMAND='fd'
+
+### Sources
+source $HOME/.zalias
 
 ### shopt
 shopt -s autocd
@@ -47,35 +59,3 @@ PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 [ -e "/etc/DIR_COLORS" ] && DIR_COLORS="/etc/DIR_COLORS"
 [ -e "$HOME/.dircolors" ] && DIR_COLORS="$HOME/.dircolors"
 [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-
-alias ls="ls -F"
-alias lsh="ls -AF"
-alias lsl="ls -Fl"
-alias lshl="ls -AFl"
-alias grep="grep --color=always"
-alias pac="pacman --color always"
-alias pda="pacman -Rnssu"
-alias pd="pacman -R"
-alias update="yaourt -Syu"
-alias 0="exit"
-alias ee="exit"
-alias mkdir="mkdir -p"
-alias mv="mv -uv"
-alias rmd="rm -irf"
-alias cp="cp -irv"
-alias scp="sudo cp -irv"
-alias zip="zip -r -db"
-
-### system search
-function zf {
-        fd -H $1 /
-}
-
-alias ds="df -h && du -sh *"
-alias aw="awman"
-alias aws="awman -d -k"
-alias awu="awman-update"
-alias rsync="rclone -v sync"
-alias rcopy="rclone -v copy"
-alias speed="speedtest-cli --simple"
-alias wr="systemctl restart NetworkManager.service"
