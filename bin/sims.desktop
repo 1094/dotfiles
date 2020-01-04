@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=The Sims 4
+Exec=wine "C:\Program Files\The Sims 4\Game\Bin\TS4_x64.exe"
+Icon=/home/sir/.icons/mine/ts4.png
+Type=Application
+Categories=Games;

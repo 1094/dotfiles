@@ -1,10 +1,15 @@
 # My Alias File
 
-### searching
+### searchin
 alias wta="cat ~/.zalias | grep"
 alias hist="cat ~/.zhistory | grep"
 function zf {
 	fd -H $1 /
+	}
+
+## sharing with macOS?
+function mac-trash {
+	find -type f -name "._*" -exec rm {} \;
 	}
 
 ### dotfile edit

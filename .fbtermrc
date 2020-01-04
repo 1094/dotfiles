@@ -1,7 +1,7 @@
 # Configuration for FbTerm
 #font-names=BPtypewrite Nerd Font, Noto Sans Mono CJK KR
-#font-names=AYearWithoutRain Nerd Font, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
-font-names=KG Drops of Jupiter, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
+font-names=AYearWithoutRain Nerd Font, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
+#font-names=KG Drops of Jupiter, Noto Sans Mono CJK KR, BPtypewrite Nerd Font
 font-size=12
 font-width=12
 # font-height=

@@ -4,8 +4,8 @@ module.exports = {
     //updateChannel: 'stable',
 //// text
     fontSize: 10,
-    fontFamily: '"KG Drops of Jupiter", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
-    //fontFamily: '"AYearWithOutRain Nerd Font", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
+//  fontFamily: '"KG Drops of Jupiter", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
+    fontFamily: '"AYearWithOutRain Nerd Font", "Noto Sans Mono CJK KR", "mononoki Nerd Font", monospace',
     // normal or bold
     fontWeight: 'normal',
     fontWeightBold: 'normal',
